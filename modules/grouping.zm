@@ -1,0 +1,45 @@
+/******************************************************************************\
+FILE:           grouping.zm
+AUTHOR:         Theo Veenker (UiL-OTS) <T.J.G.Veenker@uu.nl>
+ADAPTED BY:     Martijn van der Klis (UiL-OTS) <M.H.vanderKlis@uu.nl>
+
+DESCRIPTION:
+
+Defines groups and handles participant group assignment.
+
+
+HISTORY:
+2012-11-10 TV   Created.
+2013-07-02 MvdK Added groups to reflect version/list lay-out of segmentation experiment.
+
+\******************************************************************************/
+
+
+// Symbolic definition of groups.
+enum TestGroup
+{
+    V1L1,       // pp in this group get version 1, list 1
+    V1L2,       // pp in this group get version 1, list 2
+    V1L3,       // pp in this group get version 1, list 3
+    V1L4,       // pp in this group get version 1, list 4
+    V2L1,       // pp in this group get version 2, list 1
+    V2L2,       // pp in this group get version 2, list 2
+    V2L3,       // pp in this group get version 2, list 3
+    V2L4,       // pp in this group get version 2, list 4
+	V3L1,       // pp in this group get version 3, list 1
+    V3L2,       // pp in this group get version 3, list 2
+    V3L3,       // pp in this group get version 3, list 3
+    V3L4,       // pp in this group get version 3, list 4
+    V4L1,       // pp in this group get version 4, list 1
+    V4L2,       // pp in this group get version 4, list 2
+    V4L3,       // pp in this group get version 4, list 3
+    V4L4,       // pp in this group get version 4, list 4
+}
+
+
+// Assigns participant to a group.
+int assign_participant_to_group()
+{
+    // Select the first (i.e. default) group.
+    return select_group_default();
+}

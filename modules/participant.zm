@@ -1,0 +1,48 @@
+/******************************************************************************\
+FILE:           participant.zm
+AUTHOR:         Theo Veenker (UiL-OTS) <T.J.G.Veenker@uu.nl>
+ADAPTED BY:     Martijn van der Klis (UiL-OTS) <M.H.vanderKlis@uu.nl>
+
+DESCRIPTION:
+
+Provides participant database record field create and check functions.
+
+
+HISTORY:
+2012-11-10 TV   Created.
+2014-03-21 MvdK Disabled all checks.
+
+\******************************************************************************/
+
+
+// Creates required participant record fields.
+void create_participant_fields()
+{
+    expdb.participant.add_enum_field("language", "du|tu|DU|TU");
+    expdb.participant.add_enum_field("sex", "male|female");
+    expdb.participant.add_date_field("birthdate");
+//    expdb.participant.add_int_field("months");
+}
+
+
+// Checks current values of participant record fields.
+int check_participant_fields()
+{
+    dur month = 3600s * 24 * 31;    // 31 days
+
+//    if (!expdb.participant.has_enum_field("language")) return ERROR;
+//    if (!expdb.participant.has_enum_field("sex")) return ERROR;
+//    if (!expdb.participant.has_date_field("birthdate")) return ERROR;
+//    if (!expdb.participant.has_int_field("months")) return ERROR;
+
+//    if (expdb.participant.get_enum_field("language") == "") return ERROR;
+//    if (expdb.participant.get_enum_field("sex") == "") return ERROR;
+//    if (expdb.participant.get_date_field("birthdate") < 1900-01-01) return ERROR;
+//    if (expdb.participant.get_date_field("birthdate") >= now()) return ERROR;
+//    if (expdb.participant.get_date_field("birthdate") <= now() - 9*month) return ERROR;
+//    if (expdb.participant.get_date_field("birthdate") >= now() - 3*month) return ERROR;
+//    if (expdb.participant.get_int_field("months") < 4) return ERROR;
+//    if (expdb.participant.get_int_field("months") > 8) return ERROR;
+
+    return OK;
+}

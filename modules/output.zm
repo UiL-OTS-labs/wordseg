@@ -1,0 +1,72 @@
+/******************************************************************************\
+FILE:           output.zm
+AUTHOR:         Theo Veenker (UiL-OTS) <T.J.G.Veenker@uu.nl>
+ADAPTED BY:     -
+
+DESCRIPTION:
+
+Defines the formats of output table(s).
+
+
+HISTORY:
+2012-11-10 TV   Created.
+
+\******************************************************************************/
+
+
+// Test phase output table record, defining what is to be logged for
+// each trial.
+record TestOutput
+{
+    int         trialnum;       // trial number
+
+    int         number;         // item number
+    ItemType    type;           // item type
+
+    int         cumlt;          // cumulative looking time [ms]
+    int         cumnlt;         // cumulative not-looking time [ms]
+    bool        lookedaway;     // if set, infant looked away too long
+}
+
+
+// Test phase output table.
+TestOutput[..] test_output;
+
+
+//------------------------------------------------------------------------------
+
+// Appends one row of data to familiarization phase output table.
+void fam_output_append(TestOutput data)
+{
+    test_output.size = test_output.size + 1;
+    test_output[test_output.size-1] = data;
+}
+
+
+// Saves familiarization phase output table as a CSV file and clears the table.
+void fam_output_save()
+{
+    // Save output table as CSV file. The filename format is:
+    //   <dbname>/<dbnum>/<expname>/ses<sesid>-<tblnum>.csv
+    test_output.save(expdb.experiment.session.table_filename(1) + "-Fam", 
+        "Familiarization phase results");
+    test_output.size = 0;
+}
+
+// Appends one row of data to test phase output table.
+void test_output_append(TestOutput data)
+{
+    test_output.size = test_output.size + 1;
+    test_output[test_output.size-1] = data;
+}
+
+
+// Saves test phase output table as a CSV file and clears the table.
+void test_output_save()
+{
+    // Save output table as CSV file. The filename format is:
+    //   <dbname>/<dbnum>/<expname>/ses<sesid>-<tblnum>.csv
+    test_output.save(expdb.experiment.session.table_filename(1), 
+        "Test phase results");
+    test_output.size = 0;
+}

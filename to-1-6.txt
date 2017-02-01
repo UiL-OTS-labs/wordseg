@@ -1,0 +1,27 @@
+FROM 1.0 TO 1.4
+
+[zep: error] segmentation.zp, line 117, expression 'eyetracker.open_data_file(expdb.experiment.id, expdb.researcher.id, expdb.participant.id, expdb.experiment.session.id, 0)':
+No exact match for 'open_data_file(string, string, string, int, int)' in 'zep_eyetrk:EyeLinkEyeTracker eyetracker_eyelink3:eyetracker'.
+Possible candidates:
+    int zep_eyetrk:EyeTracker::open_data_file(string expid, string resid, string ppid, int sesid, int listid, int recid)
+    int zep_eyetrk:EyeTracker::open_data_file(string fn, string expid, string resid, string ppid, int sesid, int listid, int recid)
+=> Solution: There's a new open_data_file method. Replaced the call in segmentation.zp with this method. 
+
+[zep: error] segmentation.zp, line 193, expression 'eyetracker.open_data_file(expdb.experiment.id, expdb.researcher.id, expdb.participant.id, expdb.experiment.session.id, 1)':
+No exact match for 'open_data_file(string, string, string, int, int)' in 'zep_eyetrk:EyeLinkEyeTracker eyetracker_eyelink3:eyetracker'.
+Possible candidates:
+    int zep_eyetrk:EyeTracker::open_data_file(string expid, string resid, string ppid, int sesid, int listid, int recid)
+    int zep_eyetrk:EyeTracker::open_data_file(string fn, string expid, string resid, string ppid, int sesid, int listid, int recid)
+=> Solution: see above. 
+
+[zep: error] modules/eyetracker_eyelink3.zm, line 319, expression 'num_data_files_created':
+Undefined field 'num_data_files_created'.
+=> Solution: see below.
+
+[zep: error] modules/eyetracker_eyelink3.zm, line 321, expression 'retrieve_data_file(sesid, n, dir)':
+Undefined function 'retrieve_data_file(int, int, string)'.
+=> Solution: The retrieving of data files is now a standard in the eyetracker module, so this method doesn't need to be created explicitly. The call from segmentation.zp can use this method, the method in modules/eyetracker_eyelink3.zm can be deleted.
+
+FROM 1.4 TO 1.6
+
+No errors, all is clear!

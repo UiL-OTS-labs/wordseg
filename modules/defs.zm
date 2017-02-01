@@ -1,0 +1,78 @@
+/******************************************************************************\
+FILE:           defs.zm
+AUTHOR:         Theo Veenker (UiL-OTS) <T.J.G.Veenker@uu.nl>
+ADAPTED BY:     Martijn van der Klis (UiL-OTS) <M.H.vanderKlis@uu.nl>
+
+DESCRIPTION:
+
+Defines the experiment version, database related settings and trial timing
+setttings.
+
+
+HISTORY:
+2012-11-10 TV   Created.
+2013-06-28 MvdK Added different intervals for tests and familiarization phase.
+2013-07-02 MvdK Added FAM_STIM_CHANGE, which states after how many items the visual stimulus should change.
+2014-03-21 MvdK Set FAM_STIM_CHANGE to 1 (so visual change after every item).
+
+\******************************************************************************/
+
+// Experiment version. In pilot phase and later increment this on each 
+// relevant change.
+const int       EXPERIMENT_VERSION              = 1;
+
+// Database number. Typically set to 1.
+const int       DATABASE_NUMBER                 = 1;
+
+// ID of default researcher.
+const string    DEFAULT_RESEARCHER_ID           = "BK"; // Brigitta Keij
+
+// Whether experiment record, researcher record and group record should be
+// checked for updating (true) or reading only (false) during the experiment
+// session. The participant record and experiment session record are always
+// checked out for updating.
+const bool      EXPERIMENT_RECORD_UPDATEABLE    = false;
+const bool      RESEARCHER_RECORD_UPDATEABLE    = false;
+const bool      GROUP_RECORD_UPDATEABLE         = false;
+
+// Controls whether the assigned group is shown in the control window. Set 
+// this to false if the experimenter should not be aware of the selected 
+// group.
+const bool      SHOW_ASSIGNED_GROUP             = true;
+
+// Number of result tables to generate. 
+const int       NUM_RESULT_TABLES               = 1;
+
+///////
+// The following are timing parameters and other settings.
+///////
+
+// Delay from test page display to begin of first trial.
+const dur       FIRST_TRIAL_DELAY               = 2000ms;
+
+// Duration of the interval between two trials -> test phase.
+const dur       INTERTRIAL_INTERVAL             = 1000ms;
+
+// Duration of the interval between two items -> test phase.
+const dur       INTERSTIMULUS_INTERVAL          = 750ms;
+
+// Duration of the interval between two trials -> familiarization phase.
+const dur       FAM_INTERTRIAL_INTERVAL         = 250ms;
+
+// Duration of the interval between two trials -> familiarization phase.
+const dur       FAM_INTERSTIMULUS_INTERVAL      = 250ms;
+
+// Defines after how many trials the visual stimulus changes in the familiarization phase.
+const int       FAM_STIM_CHANGE                 = 1; 
+
+// Number of repeats for test items.
+const int       NR_REPEATS                      = 3; 
+
+// Maximum duration the child may look away. Disabled if 0ms (and in familiarization phase by default).
+const dur       MAX_LOOKAWAY_DURATION           = 2000ms;
+
+// Delay from attention getter offset and visual stimulus onset.
+const dur       ATTEN_STIM_DELAY                = 0ms;
+
+// Duration of the attention getter.
+const dur       ATTENTION_GETTER_DURATION       = 4000ms;

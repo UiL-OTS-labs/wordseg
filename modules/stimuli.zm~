@@ -1,0 +1,134 @@
+/******************************************************************************\
+FILE:           stimuli.zm
+AUTHOR:         Theo Veenker (UiL-OTS) <T.J.G.Veenker@uu.nl>
+ADAPTED BY:     Martijn van der Klis (UiL-OTS) <M.H.vanderKlis@uu.nl>
+
+DESCRIPTION:
+
+Defines the formats of item table(s) and provides the actual content of
+the item table(s) i.e. stimulus information.
+
+
+HISTORY:
+2012-11-10 TV   Created.
+2013-06-28 MvdK Changed stimuli setup for segmentation version of experiment.
+2014-03-21 MvdK Added stimuli to the test phase.
+
+\******************************************************************************/
+
+
+// Symbolic definition of item type.
+enum ItemType
+{
+    BER, DIM, SUM, FAR, DAR, SUR, FIM, BEM
+}
+
+
+// Item record used for the test phase item table.
+record TestItem
+{
+    int         number;         // item number
+    ItemType    type;           // item type
+    string      sndfn;          // sound stimulus filename-stub
+}
+
+
+// Item table used in the familiarization phase.
+//   index 1: list number
+//   index 2: item number
+TestItem[..][..] fam_items =
+{
+    // version 1
+    {   // list 1
+        {1, BER, "fam/iso1BER"}, {2, DIM, "fam/iso2DIM"}, {3, SUM, "fam/iso3SUM"}, 
+        {4, BER, "fam/iso1BER"}, {5, DIM, "fam/iso2DIM"}, {6, SUM, "fam/iso3SUM"}
+    },
+    {   // list 2
+        {1, DIM, "fam/iso1DIM"}, {2, SUM, "fam/iso2SUM"}, {3, FAR, "fam/iso3FAR"}, 
+        {4, DIM, "fam/iso1DIM"}, {5, SUM, "fam/iso2SUM"}, {6, FAR, "fam/iso3FAR"}
+    },
+    {   // list 3
+        {1, SUM, "fam/iso1SUM"}, {2, FAR, "fam/iso2FAR"}, {3, BER, "fam/iso3BER"}, 
+        {4, SUM, "fam/iso1SUM"}, {5, FAR, "fam/iso2FAR"}, {6, BER, "fam/iso3BER"}
+    }, 
+    {   // list 4
+        {1, FAR, "fam/iso1FAR"}, {2, BER, "fam/iso2BER"}, {3, DIM, "fam/iso3DIM"}, 
+        {4, FAR, "fam/iso1FAR"}, {5, BER, "fam/iso2BER"}, {6, DIM, "fam/iso3DIM"}
+    },
+    // version 2
+    {   // list 1
+        {1, BER, "fam/iso1BER"}, {2, DAR, "fam/iso2DAR"}, {3, SUR, "fam/iso3SUR"}, 
+        {4, BER, "fam/iso1BER"}, {5, DAR, "fam/iso2DAR"}, {6, SUR, "fam/iso3SUR"}
+    },
+    {   // list 2
+        {1, DAR, "fam/iso1DAR"}, {2, SUR, "fam/iso2SUR"}, {3, FIM, "fam/iso3FIM"}, 
+        {4, DAR, "fam/iso1DAR"}, {5, SUR, "fam/iso2SUR"}, {6, FIM, "fam/iso3FIM"}
+    },
+    {   // list 3
+        {1, SUR, "fam/iso1SUR"}, {2, FIM, "fam/iso2FIM"}, {3, BEM, "fam/iso3BEM"}, 
+        {4, SUR, "fam/iso1SUR"}, {5, FIM, "fam/iso2FIM"}, {6, BEM, "fam/iso3BEM"}
+    },
+    {   // list 4
+        {1, FIM, "fam/iso1FIM"}, {2, BEM, "fam/iso2BEM"}, {3, DAR, "fam/iso3DAR"}, 
+        {4, FIM, "fam/iso1FIM"}, {5, BEM, "fam/iso2BEM"}, {6, DAR, "fam/iso3DAR"}
+    }
+};
+
+
+string[..] fam_images = 
+{
+    "airplane.png", "banana.png",   "car.png",      "chick.png",    "frog.png",     "present.png",  "wateringcan.png",  
+    "apple.png",    "bear.png",     "castle.png",   "cow.png",      "giraffe.png",  "rabbit.png",   "zebra.png", 
+    "balloon.png",  "bike.png",     "chair.png",    "dolphin.png",  "shoe.png",     "tree.png", 
+    "ball.png",     "butterfly.png","chicken.png",  "fork.png",     "penguin.png"
+};
+
+
+string[..] sound_items = {"1A", "1B", "2A", "2B", "3A", "3B"};
+
+// Item table used in the test phase.
+//   index 1: list number
+//   index 2: item number
+TestItem[..][..] test_items =
+{
+    // version 1
+    {   // list 1
+        {1, BER, "test/BER"}, {2, DIM, "test/DIM"}, {3, SUM, "test/SUM"}, {4, FAR, "test/FAR"},
+        {5, BER, "test/BER"}, {6, DIM, "test/DIM"}, {7, SUM, "test/SUM"}, {8, FAR, "test/FAR"}
+    },
+    {   // list 2
+        {1, DIM, "test/DIM"}, {2, SUM, "test/SUM"}, {3, FAR, "test/FAR"}, {4, BER, "test/BER"},
+        {5, DIM, "test/DIM"}, {6, SUM, "test/SUM"}, {7, FAR, "test/FAR"}, {8, BER, "test/BER"}
+    },
+    {   // list 3
+        {1, SUM, "test/SUM"}, {2, FAR, "test/FAR"}, {3, BER, "test/BER"}, {4, DIM, "test/DIM"},
+        {5, SUM, "test/SUM"}, {6, FAR, "test/FAR"}, {7, BER, "test/BER"}, {8, DIM, "test/DIM"}
+    },
+    {   // list 4
+        {1, FAR, "test/FAR"}, {2, BER, "test/BER"}, {3, DIM, "test/DIM"}, {4, SUM, "test/SUM"},
+        {5, FAR, "test/FAR"}, {6, BER, "test/BER"}, {7, DIM, "test/DIM"}, {8, SUM, "test/SUM"}
+    },
+    // version 2
+    {   // list 1
+        {1, BEM, "test/BEM"}, {2, DAR, "test/DAR"}, {3, SUR, "test/SUR"}, {4, FIM, "test/FIM"},
+        {5, BEM, "test/BEM"}, {6, DAR, "test/DAR"}, {7, SUR, "test/SUR"}, {8, FIM, "test/FIM"},
+    },
+    {   // list 2
+        {1, DAR, "test/DAR"}, {2, SUR, "test/SUR"}, {3, FIM, "test/FIM"}, {4, BEM, "test/BEM"},
+        {5, DAR, "test/DAR"}, {6, SUR, "test/SUR"}, {7, FIM, "test/FIM"}, {8, BEM, "test/BEM"}
+    },
+    {   // list 3
+        {1, SUR, "test/SUR"}, {2, FIM, "test/FIM"}, {3, BEM, "test/BEM"}, {4, DAR, "test/DAR"},
+        {5, SUR, "test/SUR"}, {6, FIM, "test/FIM"}, {7, BEM, "test/BEM"}, {8, DAR, "test/DAR"}
+    },
+    {   // list 4
+        {1, FIM, "test/FIM"}, {2, BEM, "test/BEM"}, {3, DAR, "test/DAR"}, {4, SUR, "test/SUR"},
+        {5, FIM, "test/FIM"}, {6, BEM, "test/BEM"}, {7, DAR, "test/DAR"}, {8, SUR, "test/SUR"}
+    }
+};
+
+const string TEST_IMAGE         = "new.png";
+
+const string ATTENTION_IMAGE    = "doll.svg";
+const string ATTENTION_SOUND1   = "chime_up.wav";
+const string ATTENTION_SOUND2   = "chime_down.wav";

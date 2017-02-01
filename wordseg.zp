@@ -1,0 +1,347 @@
+/******************************************************************************\
+FILE:           segmentation.zp
+AUTHOR:         Theo Veenker (UiL-OTS) <T.J.G.Veenker@uu.nl>
+ADAPTED BY:     Martijn van der Klis (UiL-OTS) <M.H.vanderKlis@uu.nl>
+
+EXPERIMENT:     Preferential Listening, Segmentation Experiment (using eye-tracking)
+
+DESCRIPTION:
+
+Purpose of this experiment is to detect whether an infant participant
+has a preference for one particular type of sound (word, intonation, 
+accent, language etc) over another. The infant sits on the caregiver's 
+lap facing a computer monitor on which visual stimuli will be presented.
+Auditory stimuli will be presented through a speaker. The infants 
+eye-movements will be followed by an eye-tracker. The procedure 
+consists of a short familiarization phase, and a test phase. The trial 
+structure is the same for both phases: first an audio-visual attention 
+getter is presented. Then a visual stimulus is presented together with 
+an auditory stimulus. The auditory stimulus consists of a sequence of 
+sounds (words) of a particular type. For each in the test phase trial 
+the accumulated time the child looks at the visual stimulus is measured.
+If the infant looks away too long during the test phase, the trial is 
+aborted. Output: looking time.
+
+
+Global structure of experiment:
+
+  - welcome
+
+  - eye-tracker calibration
+
+  - familiarization phase (1 trial)
+      trial
+
+  - test phase (N trials)
+      trial
+
+  - thankyou
+
+
+HISTORY:
+2012-11-10 TV   Created.
+2013-06-28 MvdK Added groups for familiarization stimuli.
+2013-07-02 MvdK Added randomization for both familiarization and test items.
+2014-02-28 MvdK Converted script to ZEP version 1.4.
+2014-03-28 MvdK Converted script to ZEP version 1.6 (only changed "requires" line)
+2014-04-03 ATM  Added output for familiarization phase.
+
+\******************************************************************************/
+
+requires 1.6;
+
+import std_windows1;
+import std_texts_en;
+import std_entry_page2;
+import std_exit_page2;
+import std_pause_page;
+import std_blank_page;
+import std_etcal_page;
+import std_sound_output_device;
+import std_sound_playback;
+
+import eyetracker_eyelink_infant;
+//import eyetracker_tobii_infant;
+import test_page;
+
+
+Experiment experiment
+{
+    on_event:entry()
+    {
+        show_test_windows();
+    }
+
+
+    on_event:message()
+    {
+        // On Ctrl+F4 jump unconditionally to thankyou phase.
+        if (message_sender == control && message_arg == SYS_STOP)
+        {
+            control.mark_experiment_aborted();
+            thankyou.enter();
+        }
+    }
+
+
+    Part welcome
+    {
+        on_event:entry()
+        {
+            entry_page.add_image(stimuli_dir() + "images/bal.png");
+            entry_page.action(this);
+        }
+    }
+
+
+    Part calibration
+    {
+        on_event:entry()
+        {
+            etcal_page.action(this);
+        }
+    }
+
+
+    Block familiarization
+    {
+        TestItem        item;   // current item
+
+
+        on_event:entry()
+        {
+            // Randomize familiarization items table.
+            // if (shuffle_fam_items() != OK) terminate;
+
+            num_cycles = fam_items[selected_group].size;
+
+            // to 1.4 => new file format eye-tracker.
+            int listnum = selected_group + 1;
+            int recordingnum = 0;
+            string edfname = 
+                format(expdb.experiment.session.id, 4) + "_Fam" + "_" + 
+                format(listnum, 2) + "_" + 
+                format(recordingnum, 2);
+
+            // Let eye-tracker open a data file. 
+            eyetracker.open_data_file(
+                edfname, 
+                expdb.experiment.id, 
+                expdb.researcher.id, 
+                expdb.participant.id, 
+                expdb.experiment.session.id, 
+                listnum, recordingnum);
+            eyetracker.print_to_data_file("Preferential Listening Segmentation");
+
+            // Prepare test page.
+            test_page.setup();
+        }
+
+
+        on_event:exit()
+        {
+            test_page.cleanup();
+
+            eyetracker.abort();
+            eyetracker.close_data_file();
+            
+            // Save familiarization phase output table as CSV file.
+            fam_output_save();
+        }
+
+
+        Trial trial
+        {
+            on_event:entry()
+            {
+                item = fam_items[selected_group][familiarization.cycle];
+
+                // Add begin of trial message to eye-tracker data file for
+                // analysis with the Fixation tool (Cozijn 1994).
+                eyetracker.print_to_data_file("trialbeg " +
+                    string(item.number) + " " +
+                    string(familiarization.cycle + 1) + " " +
+                    string(item.number) + " " +
+                    string(item.type));
+                eyetracker.print_to_data_file("plafile " +
+                    string(item.type) + 
+                    string(item.number) + ".bmp");
+
+                // Show information on eye-tracker screen.
+                eyetracker.send_command("record_status_message "
+                    "'Familiarization trial " + string(familiarization.cycle + 1) + "'");
+
+                // Start trial.
+                test_page.action(this, item, reference_time, 1, familiarization.cycle);
+            }
+
+
+            on_event:exit()
+            {
+				// Add new row to familiarization output table.
+                TestOutput output;
+                output.trialnum = test.cycle + 1;
+                output.number = item.number;
+                output.type = item.type;
+                output.cumlt = int(test_page.response.cumlt);
+                output.cumnlt = int(test_page.response.cumnlt);
+                output.lookedaway = test_page.response.lookedaway;
+                fam_output_append(output);
+				
+                // Add end of trial message.
+                eyetracker.print_to_data_file("trialend " +
+                    string(item.number) + " " +
+                    string(familiarization.cycle + 1) + " " +
+                    string(item.number) + " " +
+                    string(item.type));
+
+                // Clear eye-tracker status line.
+                eyetracker.send_command("record_status_message ''");
+            }
+        }
+    }
+
+
+    Block test
+    {
+        TestItem        item;   // current item
+        TestOutput      output; // current output table row
+
+
+        on_event:entry()
+        {
+            // Randomize test items table.
+            // if (shuffle_test_items() != OK) terminate;
+
+            num_cycles = test_items[selected_group].size;
+
+            // to 1.4 => new file format eye-tracker.
+            int listnum = selected_group + 1;
+            int recordingnum = 0;
+            string edfname = 
+                format(expdb.experiment.session.id, 4) + "_" + 
+                format(listnum, 2) + "_" + 
+                format(recordingnum, 2);
+
+            // Let eye-tracker open a data file. 
+            eyetracker.open_data_file(
+                edfname, 
+                expdb.experiment.id, 
+                expdb.researcher.id, 
+                expdb.participant.id, 
+                expdb.experiment.session.id, 
+                listnum, recordingnum);
+            eyetracker.print_to_data_file("Preferential Listening Segmentation");
+
+            // Prepare test page.
+            test_page.setup();
+        }
+
+
+        on_event:exit()
+        {
+            test_page.cleanup();
+
+            eyetracker.abort();
+            eyetracker.close_data_file();
+
+            // Save test phase output table as CSV file.
+            test_output_save();
+        }
+
+
+        Trial trial
+        {
+            on_event:entry()
+            {
+                item = test_items[selected_group][test.cycle];
+
+                // Add begin of trial message to eye-tracker data file for
+                // analysis with the Fixation tool (Cozijn 1994).
+                eyetracker.print_to_data_file("trialbeg " +
+                    string(item.number) + " " +
+                    string(test.cycle + 1) + " " +
+                    string(item.number) + " " +
+                    string(item.type));
+                eyetracker.print_to_data_file("plafile " +
+                    string(item.type) + 
+                    string(item.number) + ".bmp");
+
+                // Show information on eye-tracker screen.
+                eyetracker.send_command("record_status_message "
+                    "'Test trial " + string(test.cycle+1) + "'");
+
+                // Start trial.
+                test_page.action(this, item, reference_time, 1, test.cycle);
+            }
+
+
+            on_event:exit()
+            {
+                // Add new row to test output table.
+                TestOutput output;
+                output.trialnum = test.cycle + 1;
+                output.number = item.number;
+                output.type = item.type;
+                output.cumlt = int(test_page.response.cumlt);
+                output.cumnlt = int(test_page.response.cumnlt);
+                output.lookedaway = test_page.response.lookedaway;
+                test_output_append(output);
+
+                // Add end of trial message.
+                eyetracker.print_to_data_file("trialend " +
+                    string(item.number) + " " +
+                    string(test.cycle + 1) + " " +
+                    string(item.number) + " " +
+                    string(item.type));
+
+                // Clear eye-tracker status line.
+                eyetracker.send_command("record_status_message ''");
+            }
+        }
+    }
+
+
+    Part
+    {
+        on_event:entry()
+        {
+            blank_page.action_auto(this, 500ms, 500ms);
+        }
+    }
+
+
+    Part thankyou
+    {
+        int     sesid;
+
+
+        on_event:entry()
+        {
+            sesid = expdb.experiment.session.id;
+
+            control.end_experiment();   // Check-in session.
+
+            exit_page.add_image(stimuli_dir() + "images/giraf.png");
+            exit_page.add_image(stimuli_dir() + "images/kikker.png");
+            exit_page.add_image(stimuli_dir() + "images/kip.png");
+            exit_page.add_image(stimuli_dir() + "images/koe.png");
+            exit_page.add_image(stimuli_dir() + "images/konijn.png");
+            exit_page.add_image(stimuli_dir() + "images/pinguin.png");
+            exit_page.add_image(stimuli_dir() + "images/vlinder.png");
+            exit_page.add_image(stimuli_dir() + "images/zebra.png");
+            exit_page.action(this, 60s);
+            sound_playback.playback.set_scaling(1.0);
+            sound_playback.play(stimuli_dir() + "sounds/handjes.wav", 
+                now() + 1000ms);
+        }
+
+
+        on_event:exit()
+        {
+            // We're closing. Retrieve EDFs recorded in this session.
+            // to 1.4 => new (standard) method for retrieving files
+            eyetracker.retrieve_data_files();
+        }
+    }
+}
