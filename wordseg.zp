@@ -1,7 +1,8 @@
 /******************************************************************************\
-FILE:           segmentation.zp
+FILE:           wordseg.zp
 AUTHOR:         Theo Veenker (UiL-OTS) <T.J.G.Veenker@uu.nl>
 ADAPTED BY:     Martijn van der Klis (UiL-OTS) <M.H.vanderKlis@uu.nl>
+                Maarten Duijndam
 
 EXPERIMENT:     Preferential Listening, Segmentation Experiment (using eye-tracking)
 
@@ -45,10 +46,11 @@ HISTORY:
 2014-02-28 MvdK Converted script to ZEP version 1.4.
 2014-03-28 MvdK Converted script to ZEP version 1.6 (only changed "requires" line)
 2014-04-03 ATM  Added output for familiarization phase.
+2014-03-28 MD   Converted script to ZEP version 1.14 (only changed "requires" line)
 
 \******************************************************************************/
 
-requires 1.6;
+requires 1.14;
 
 import std_windows1;
 import std_texts_en;

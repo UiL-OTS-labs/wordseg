@@ -22,7 +22,7 @@ HISTORY:
 const int       EXPERIMENT_VERSION              = 1;
 
 // Database number. Typically set to 1.
-const int       DATABASE_NUMBER                 = 1;
+const string    DATABASE_NUMBER                 = "1";
 
 // ID of default researcher.
 const string    DEFAULT_RESEARCHER_ID           = "BK"; // Brigitta Keij
