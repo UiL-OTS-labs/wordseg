@@ -30,12 +30,8 @@ Block test_block
     {
         TestItem        item;   // current item
 
-
         on_event:entry()
         {
-            // Randomize familiarization items table.
-            // if (shuffle_fam_items() != OK) terminate;
-
             num_cycles = fam_items[selected_group].size;
 
             // to 1.4 => new file format eye-tracker.
@@ -57,7 +53,7 @@ Block test_block
             eyetracker.print_to_data_file("Preferential Listening Segmentation");
 
             // Prepare test page.
-            test_page.setup();
+            test_page.setup(FAM_PHASE);
         }
 
 
@@ -81,21 +77,29 @@ Block test_block
 
                 // Add begin of trial message to eye-tracker data file for
                 // analysis with the Fixation tool (Cozijn 1994).
-                eyetracker.print_to_data_file("trialbeg " +
-                    string(item.number) + " " +
-                    string(familiarization.cycle + 1) + " " +
-                    string(item.number) + " " +
-                    string(item.type));
-                eyetracker.print_to_data_file("plafile " +
-                    string(item.type) + 
-                    string(item.number) + ".bmp");
+                eyetracker.print_to_data_file(
+                        "trialbeg " +
+                        string(item.number) + " " +
+                        string(familiarization.cycle + 1) + " " +
+                        string(item.number) + " " +
+                        string(item.type)
+                        );
+                eyetracker.print_to_data_file(
+                        "plafile " +
+                        string(item.type) + 
+                        string(item.number) + ".bmp"
+                        );
 
                 // Show information on eye-tracker screen.
-                eyetracker.send_command("record_status_message "
-                    "'Familiarization trial " + string(familiarization.cycle + 1) + "'");
+                eyetracker.send_command(
+                        "record_status_message "
+                        "'Familiarization trial " +
+                        string(familiarization.cycle + 1)
+                        + "'"
+                        );
 
                 // Start trial.
-                test_page.action(this, item, reference_time, 1, familiarization.cycle);
+                test_page.action(this, item, reference_time, familiarization.cycle);
             }
 
 
@@ -157,7 +161,7 @@ Block test_block
             eyetracker.print_to_data_file("Preferential Listening Segmentation");
 
             // Prepare test page.
-            test_page.setup();
+            test_page.setup(TEST_PHASE);
         }
 
 
@@ -198,7 +202,7 @@ Block test_block
                     "'Test trial " + string(test.cycle+1) + "'");
 
                 // Start trial.
-                test_page.action(this, item, reference_time, 1, test.cycle);
+                test_page.action(this, item, reference_time, test.cycle);
             }
 
 

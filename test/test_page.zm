@@ -2,6 +2,7 @@
 FILE:           test_page.zm
 AUTHOR:         Theo Veenker (UiL-OTS) <T.J.G.Veenker@uu.nl>
 ADAPTED BY:     Martijn van der Klis (UiL-OTS) <M.H.vanderKlis@uu.nl>
+                Maarten Duijndam
 
 DESCRIPTION:
 
@@ -18,13 +19,18 @@ HISTORY:
 
 \******************************************************************************/
 
+enum ExpPhase {
+    FAM_PHASE,  // familiarization phase
+    TEST_PHASE  // test phase.
+};
+
 
 Page test_page
 {
     TestItem    item;           // trial control parameters
     string      sound;          // current sound file stub
     int         next = 0;       // next familiarization image
-    int         phase;          // current experiment phase (0 = familiarization, 1 = test)
+    ExpPhase    phase;          // Indicates in which phase we are.
     bool        etstarted;      // whether or not eye-tracking has started
 
 
@@ -51,7 +57,6 @@ Page test_page
             height = 0;         // 0 means as large as possible
         }
 
-
         CanvasGadget canvas
         {
             init()
@@ -61,7 +66,6 @@ Page test_page
                 offset_x = width / 2;
                 offset_y = height / 2;
             }
-
 
             on_event:start()
             {
@@ -79,17 +83,16 @@ Page test_page
                 eyetracker.print_to_data_file(string(dt) + "DISPLAY ON");
 
                 // Show visual stimuli.
-                stimulus1.is_visible = true;
-                stimulus2.is_visible = true;
-                stimulus3.is_visible = true;
+                stimulus1.is_visible = false;
+                stimulus2.is_visible = false;
 
                 // Start first auditory stimulus at visual stimulus onset.
                 time audonsettime = auditory_stimulus.play(start_time, phase);
+                stimulus1.start(audonsettime, INTER_CBOARD_DUR);
 
                 // Enable gaze monitoring at onset of first auditory stimulus.
                 response.start(audonsettime);
             }
-
 
             ImageShape attention
             {
@@ -108,13 +111,11 @@ Page test_page
                     y = -actual_height / 2;
                 }
 
-
                 on_event:pre_update()
                 {
                     real t = relative_frame * real(display_device.refresh_interval) * 1e-3;
                     rotation = 0.1 * M_PI * sin(2 * M_PI * 0.5 * t);
                 }
-
 
                 on_event:start()
                 {
@@ -124,92 +125,57 @@ Page test_page
                         event_time + 250ms, 250ms);
                 }
 
-
                 on_event:finish()
                 {
                     sound_playback2.abort();
                 }
             }
 
-
             ImageShape stimulus1
             {
-                void load(string fn, int pos, bool fullsize = false)
+                //void load(string fn, int pos, bool fullsize = false)
+                void load(string fn)
                 {
+                    // center the grid
                     image = fn;
-                    if (fullsize) {
-                        width = canvas.width;
-                        height = -1;
-                        x = -actual_width / 2;
-                        y = -actual_height / 2;
-                    }
-                    else {
-                        width = 300; 
-                        height = -1;
-                        if (pos == 1) { x = -450; y = -400; }
-                        if (pos == 2) { x = -150; y = -400; }
-                        if (pos == 3) { x = 150;  y = -400; } 
-                        if (pos == 4) { x = -450; y = -100; }
-                        if (pos == 5) { x = -150; y = -100; } 
-                        if (pos == 6) { x = 150;  y = -100; } 
-                        if (pos == 7) { x = -450; y = 200; }
-                        if (pos == 8) { x = -150; y = 200; } 
-                        if (pos == 9) { x = 150;  y = 200; }
-                    } 
+                    x = -actual_width/2;
+                    y = -actual_height/2;
+                }
+
+                on_event:start()
+                {
+                    string fn = get_next_cboard();
+                    fn = stimuli_dir() + "images/" + fn;
+                    stimulus2.abort();
+                    stimulus2.load(fn);
+                    stimulus2.start(
+                            stimulus1.start_time + INTER_CBOARD_DUR,
+                            INTER_CBOARD_DUR
+                            );
                 }
             }
 
             ImageShape stimulus2
             {
-                void load(string fn, int pos, bool fullsize = false)
+                //void load(string fn, int pos, bool fullsize = false)
+                void load(string fn)
                 {
+                    // center the grid
                     image = fn;
-                    if (fullsize) {
-                        width = canvas.width;
-                        height = -1;
-                        x = -actual_width / 2;
-                        y = -actual_height / 2;
-                    }
-                    else {
-                        width = 300; 
-                        height = -1;
-                        if (pos == 1) { x = -450; y = -400; }
-                        if (pos == 2) { x = -150; y = -400; }
-                        if (pos == 3) { x = 150;  y = -400; } 
-                        if (pos == 4) { x = -450; y = -100; }
-                        if (pos == 5) { x = -150; y = -100; } 
-                        if (pos == 6) { x = 150;  y = -100; } 
-                        if (pos == 7) { x = -450; y = 200; }
-                        if (pos == 8) { x = -150; y = 200; } 
-                        if (pos == 9) { x = 150;  y = 200; }
-                    } 
+                    x = -actual_width/2;
+                    y = -actual_height/2;
                 }
-            }
-
-            ImageShape stimulus3
-            {
-                void load(string fn, int pos, bool fullsize = false)
+                
+                on_event:start()
                 {
-                    image = fn;
-                    if (fullsize) {
-                        width = canvas.width;
-                        height = -1;
-                        x = -actual_width / 2;
-                        y = -actual_height / 2;
-                    }
-                    else {
-                        width = 300; 
-                        height = -1;
-                        if (pos == 1) { x = -450; y = -400; }
-                        if (pos == 2) { x = -150; y = -400; }
-                        if (pos == 3) { x = 150;  y = -400; } 
-                        if (pos == 4) { x = -450; y = -100; }
-                        if (pos == 5) { x = -150; y = -100; } 
-                        if (pos == 6) { x = 150;  y = -100; } 
-                        if (pos == 7) { x = -450; y = 200; }
-                        if (pos == 8) { x = -150; y = 200; } 
-                        if (pos == 9) { x = 150;  y = 200; }
-                    } 
+                    string fn = get_next_cboard();
+                    fn = stimuli_dir() + "images/" + fn;
+                    stimulus1.abort();
+                    stimulus1.load(fn);
+                    stimulus1.start(
+                            stimulus2.start_time + INTER_CBOARD_DUR,
+                            INTER_CBOARD_DUR
+                            );
                 }
             }
         }
@@ -232,18 +198,12 @@ Page test_page
         {
             // Prepare stimulus presentation objects.
             int pos1 = random(1, 9);
-            int img1 = next++ % fam_images.size; 
-            canvas.stimulus1.load(stimuli_dir() + "images/new/" + fam_images[img1], pos1); 
-
-            int pos2 = pos1; 
-            int img2 = next++ % fam_images.size; 
-            while (pos2 == pos1) pos2 = random(1, 9);
-            canvas.stimulus2.load(stimuli_dir() + "images/new/" + fam_images[img2], pos2); 
-    
-            int pos3 = pos1; 
-            int img3 = next++ % fam_images.size; 
-            while (pos3 == pos1 || pos3 == pos2) pos3 = random(1, 9);
-            canvas.stimulus3.load(stimuli_dir() + "images/new/" + fam_images[img3], pos3); 
+            int img1 = next++ % cboard_images.size; 
+            canvas.stimulus1.load(
+                    stimuli_dir() +
+                    "images/" +
+                    get_next_cboard()
+                    ); 
 
             // Start picture stimulus.
             canvas.start(t);
@@ -255,7 +215,8 @@ Page test_page
         time start_stimulus_test(time t)
         {
             // Prepare stimulus presentation objects.
-            canvas.stimulus3.load(stimuli_dir() + "images/new/" + TEST_IMAGE, 0, true); 
+            //canvas.stimulus1.load(stimuli_dir() + "images/new/" + TEST_IMAGE, 0, true); 
+            canvas.stimulus1.load(stimuli_dir() + "images/" + get_next_cboard()); 
 
             // Start picture stimulus.
             canvas.start(t);
@@ -271,7 +232,6 @@ Page test_page
 
             canvas.stimulus1.is_visible = false;
             canvas.stimulus2.is_visible = false;
-            canvas.stimulus3.is_visible = false;
         }
     }
 
@@ -285,10 +245,8 @@ Page test_page
         // Sound source/producer object.
         SoundFile clip {}
 
-
         // Sound sink/consumer object.
         SoundPlayback playback {}
-
 
         on_event:start()
         {
@@ -309,7 +267,7 @@ Page test_page
                 play(play_time, phase, index);
             } 
             // Repeat (NR_REPEATS times) for test items...
-            else if (phase == 1 && ++repeats < NR_REPEATS) {
+            else if (phase == TEST_PHASE && ++repeats < NR_REPEATS) {
                 index = 0; 
                 play(play_time, phase, index);
             }
@@ -322,7 +280,7 @@ Page test_page
         }
 
 
-        time play(time t, int p, int index = 0)
+        time play(time t, ExpPhase p, int index = 0)
         {
             // Abort any previous sounds playing.
             abort();
@@ -336,19 +294,29 @@ Page test_page
             clip.file = stimuli_dir() + "sounds/" + sound + ".wav";  //+ sound_items[index]
 
             // Change layout in familiarization phase for every second item. 
-            if (p == 0 && index % FAM_STIM_CHANGE == 0) layout.start_stimulus_familiarization(t);
+            if (p == FAM_PHASE && index % FAM_STIM_CHANGE == 0)
+                layout.start_stimulus_familiarization(t);
 
             // Update status line on control window. Cleared in done() below.
-            control.set_status(string(item.type) + "-" + string(sound_items[index]) + " (id: " + string(item.number) + ")");
+            control.set_status(
+                    string(item.type)          + "-"      +
+                    string(sound_items[index]) + " (id: " +
+                    string(item.number)        + ")"
+                    );
             
             // Start auditory stimulus, return expected start time.
             start(t);
             return expected_start_time;
         }
 
-        dur interval(int p) 
+        dur interval(ExpPhase p) 
         {
-            return p == 0 ? FAM_INTERSTIMULUS_INTERVAL : INTERSTIMULUS_INTERVAL;
+            dur ret;
+            if(p == FAM_PHASE)
+                ret = FAM_INTERSTIMULUS_INTERVAL;
+            else 
+                ret = INTERSTIMULUS_INTERVAL;
+            return ret;
         }
     }
 
@@ -397,44 +365,41 @@ Page test_page
 
             // Evaluate looking during the response period.
             if (looking)
-						{
-							if (lookstart == time(0)) 
-							{
-								cumnlt += curnlt;	
-								curnlt = 0ms;
-								lookstart = t;
-								nolookstart = time(0);
-							}
-							curlt = t - lookstart;
-							
-						if (cumlt + curlt >= 45000ms)
-							{
-								stop();
-							}	
+            {
+                if (lookstart == time(0)) 
+                {
+                    cumnlt += curnlt;	
+                    curnlt = 0ms;
+                    lookstart = t;
+                    nolookstart = time(0);
+                }
+                curlt = t - lookstart;
 
-						}
-						else
-						{
-							if (nolookstart == time(0)) 
-							{
-								cumlt += curlt;
-								curlt = 0ms;
-								nolookstart = t;
-								lookstart = time(0);
-							}
-							curnlt = t - nolookstart;				
+                if (cumlt + curlt >= 45000ms)
+                {
+                    stop();
+                }	
 
-							
-							if (MAX_LOOKAWAY_DURATION > 0ms && 
-								curnlt >= MAX_LOOKAWAY_DURATION)
-							{
-								lookedaway = true;
-								stop();
-							}
-						}
-		}		
+            }
+            else
+            {
+                if (nolookstart == time(0)) 
+                {
+                    cumlt += curlt;
+                    curlt = 0ms;
+                    nolookstart = t;
+                    lookstart = time(0);
+                }
+                curnlt = t - nolookstart;				
 
-
+                if (MAX_LOOKAWAY_DURATION > 0ms && 
+                        curnlt >= MAX_LOOKAWAY_DURATION)
+                {
+                    lookedaway = true;
+                    stop();
+                }
+            }
+        }		
 
         on_event:finish()
         {
@@ -471,18 +436,26 @@ Page test_page
         test_window1.activate();
 
         // Show this page if not yet shown.
-        int alreadyshown = test_window1.show_page(this, 
-            tref + PAGE_TRANSITION_DELAY, PAGE_TRANSITION_DURATION);
+        int alreadyshown = test_window1.show_page(
+                this, 
+                tref + PAGE_TRANSITION_DELAY,
+                PAGE_TRANSITION_DURATION
+                );
 
         // If not yet shown make tref the time it will become fully visible.
-        if (!alreadyshown) tref = expected_transition_finish_time;
+        if (!alreadyshown)
+            tref = expected_transition_finish_time;
 
         // First trial should begin FIRST_TRIAL_DELAY from tref. Following
         // trials should begin (FAM_)INTERTRIAL_INTERVAL from tref.
         if (!alreadyshown)
             tref += FIRST_TRIAL_DELAY;
-        else
-            tref += phase == 0 ? FAM_INTERTRIAL_INTERVAL : INTERTRIAL_INTERVAL;
+        else {
+            if (phase == FAM_PHASE)
+                tref += FAM_INTERTRIAL_INTERVAL;
+            else
+                tref += INTERTRIAL_INTERVAL;
+        }
 
         return tref;
     }
@@ -492,8 +465,9 @@ Page test_page
 
 
     // Performs preparatory work required before using this page.
-    void setup()
+    void setup(ExpPhase p)
     {
+        phase = p;
     }
 
 
@@ -505,17 +479,12 @@ Page test_page
         sound_playback2.abort();
     }
 
-
     // Starts a trial.
-    void action(Object caller, TestItem it, time tref, int p, int count=-1)
+    void action(Object caller, TestItem it, time tref, int count=-1)
     {
         // Save passed trial control parameters.
         item = it;
-        phase = p;
         sound = item.sndfn;
-
-        // Shuffle familiarization images.
-        fam_images.shuffle(0, -1);
 
         // Show this page (if necessary) and determine when the trial should begin.
         tref = prepare_trial_start(tref);
@@ -524,12 +493,18 @@ Page test_page
         response.clear();
 
         // Start attention getter in test phase and first trial of familiarization phase.
-        time attenoffset = phase == 0 && count > 0 ? tref : layout.start_attention_getter(tref);
+        time attenoffset;
+        if (phase == FAM_PHASE && count > 0)
+            attenoffset = tref;
+        else 
+            attenoffset = layout.start_attention_getter(tref);
 
         // Start visual stimulus at attention getter offet + ATTEN_STIM_DELAY. 
         // Visual stimulus start event procedure will start the audio stimulus and response period.
-        if (phase == 0) layout.canvas.start(attenoffset + ATTEN_STIM_DELAY);
-        else layout.start_stimulus_test(attenoffset + ATTEN_STIM_DELAY);
+        if (phase == FAM_PHASE)
+            layout.canvas.start(attenoffset + ATTEN_STIM_DELAY);
+        else
+            layout.start_stimulus_test(attenoffset + ATTEN_STIM_DELAY);
             
         // Remember who to signal when the trial is over.
         target = caller;

@@ -20,7 +20,16 @@ HISTORY:
 // Symbolic definition of item type.
 enum ItemType
 {
- PAASEL, BAASEL, DAASEL, TAASEL, PANNO, BANNO, DANNO, TANNO, FONIE, GEMER   
+    PAASEL,
+    BAASEL,
+    DAASEL,
+    TAASEL,
+    PANNO,
+    BANNO,
+    DANNO,
+    TANNO,
+    FONIE,
+    GEMER   
 }
 
 
@@ -32,6 +41,25 @@ record TestItem
     string      sndfn;          // sound stimulus filename-stub
 }
 
+const string TEST_IMAGE         = "new.png";
+
+const string ATTENTION_IMAGE    = "doll.svg";
+const string ATTENTION_SOUND1   = "chime_up.wav";
+const string ATTENTION_SOUND2   = "chime_down.wav";
+
+/*Checker board images*/
+string[..] cboard_images = {
+    "cboard01.png",
+    "cboard02.png",
+    "cboard03.png"
+};
+
+int nth_cboard = 0; // just an index to cboard_images
+
+string get_next_cboard()
+{
+    return cboard_images[nth_cboard++ % cboard_images.size];
+}
 
 // Item table used in the familiarization phase.
 //   index 1: list number
@@ -40,67 +68,73 @@ TestItem[..][..] fam_items =
 {
     // version 1
     {   // list 1
-        {1, BAASEL, "fam/Baasel_Frag1"}, {2, PANNO, "fam/Panno_Frag2"}
+        {1, BAASEL, "fam/Baasel_Frag1"},
+        {2, PANNO, "fam/Panno_Frag2"}
     },
     {   // list 2
-        {1, BAASEL, "fam/Baasel_Frag2"}, {2, PANNO, "fam/Panno_Frag1"}
+        {1, BAASEL, "fam/Baasel_Frag2"},
+        {2, PANNO, "fam/Panno_Frag1"}
     },
     {   // list 3
-        {1, DAASEL, "fam/Daasel_Frag1"}, {2, TANNO, "fam/Tanno_Frag2"} 
+        {1, DAASEL, "fam/Daasel_Frag1"},
+        {2, TANNO, "fam/Tanno_Frag2"} 
     },
     {   // list 4
-        {1, DAASEL, "fam/Daasel_Frag2"}, {2, TANNO, "fam/Tanno_Frag1"} 
+        {1, DAASEL, "fam/Daasel_Frag2"},
+        {2, TANNO, "fam/Tanno_Frag1"} 
     },
 	// version 2
     {   // list 1
-        {1, PANNO, "fam/Panno_Frag1"}, {2, BAASEL, "fam/Baasel_Frag2"}
+        {1, PANNO, "fam/Panno_Frag1"},
+        {2, BAASEL, "fam/Baasel_Frag2"}
     },
     {   // list 2
-        {1, PANNO, "fam/Panno_Frag2"}, {2, BAASEL, "fam/Baasel_Frag1"}
+        {1, PANNO, "fam/Panno_Frag2"},
+        {2, BAASEL, "fam/Baasel_Frag1"}
     },
     {   // list 3
-        {1, TANNO, "fam/Tanno_Frag1"}, {2, DAASEL, "fam/Daasel_Frag2"}
+        {1, TANNO, "fam/Tanno_Frag1"},
+        {2, DAASEL, "fam/Daasel_Frag2"}
     },
     {   // list 4
-        {1, TANNO, "fam/Tanno_Frag2"}, {2, DAASEL, "fam/Daasel_Frag1"}
+        {1, TANNO, "fam/Tanno_Frag2"},
+        {2, DAASEL, "fam/Daasel_Frag1"}
     },
     // version 3
     {   // list 1
-        {1, PAASEL, "fam/Paasel_Frag1"}, {2, BANNO, "fam/Banno_Frag2"}
+        {1, PAASEL, "fam/Paasel_Frag1"},
+        {2, BANNO, "fam/Banno_Frag2"}
     },
     {   // list 2
-        {1, PAASEL, "fam/Paasel_Frag2"}, {2, BANNO, "fam/Banno_Frag1"}
+        {1, PAASEL, "fam/Paasel_Frag2"},
+        {2, BANNO, "fam/Banno_Frag1"}
     },
     {   // list 3
-        {1, TAASEL, "fam/Taasel_Frag1"}, {2, DANNO, "fam/Danno_Frag2"} 
+        {1, TAASEL, "fam/Taasel_Frag1"},
+        {2, DANNO, "fam/Danno_Frag2"} 
     },
     {   // list 4
-        {1, TAASEL, "fam/Taasel_Frag2"}, {2, DANNO, "fam/Danno_Frag1"} 
+        {1, TAASEL, "fam/Taasel_Frag2"},
+        {2, DANNO, "fam/Danno_Frag1"} 
     },
 	 // version 4
     {   // list 1
-        {1, BANNO, "fam/Banno_Frag1"}, {2, PAASEL, "fam/Paasel_Frag2"} 
+        {1, BANNO, "fam/Banno_Frag1"},
+        {2, PAASEL, "fam/Paasel_Frag2"} 
     },
     {   // list 2
-        {1, BANNO, "fam/Banno_Frag2"}, {2, PAASEL, "fam/Paasel_Frag1"} 
+        {1, BANNO, "fam/Banno_Frag2"},
+        {2, PAASEL, "fam/Paasel_Frag1"} 
     },
     {   // list 3
-        {1, DANNO, "fam/Danno_Frag1"}, {2, TAASEL, "fam/Taasel_Frag2"} 
+        {1, DANNO, "fam/Danno_Frag1"},
+        {2, TAASEL, "fam/Taasel_Frag2"} 
     },
     {   // list 4
-        {1, DANNO, "fam/Danno_Frag2"}, {2, TAASEL, "fam/Taasel_Frag1"}  
+        {1, DANNO, "fam/Danno_Frag2"},
+        {2, TAASEL, "fam/Taasel_Frag1"}  
     },
 };
-
-
-
-string[..] fam_images = 
- {
-//     "airplane.png", "banana.png",   "car.png",      "chick.png",    "frog.png",     "present.png",  "wateringcan.png",  
-//     "apple.png",    "bear.png",     "castle.png",   "cow.png",      "giraffe.png",  "rabbit.png",   "zebra.png", 
-//     "balloon.png",  "bike.png",     "chair.png",    "dolphin.png",  "shoe.png",     "tree.png", 
-//     "ball.png",     "butterfly.png","chicken.png",  "fork.png",     "penguin.png"
- };
 
 
 string[..] sound_items = {"1A", "1B", "2A", "2B", "3A", "3B"};
@@ -111,90 +145,229 @@ string[..] sound_items = {"1A", "1B", "2A", "2B", "3A", "3B"};
 TestItem[..][..] test_items =
 {
     {   // list 1
-        {1, GEMER, "test/Gemer_Isolatie"}, {2, FONIE, "test/Fonie_Isolatie"}, {3, BAASEL, "test/Baasel_Isolatie"}, {4, PANNO, "test/Panno_Isolatie"},
-		{5, BAASEL, "test/Baasel_Isolatie"}, {6, FONIE, "test/Fonie_Isolatie"}, {7, PANNO, "test/Panno_Isolatie"}, {8, GEMER, "test/Gemer_Isolatie"},
-		{9, FONIE, "test/Fonie_Isolatie"}, {10, GEMER, "test/Gemer_Isolatie"}, {11, PANNO, "test/Panno_Isolatie"}, {12, BAASEL, "test/Baasel_Isolatie"}
+        {1, GEMER, "test/Gemer_Isolatie"},
+        {2, FONIE, "test/Fonie_Isolatie"},
+        {3, BAASEL, "test/Baasel_Isolatie"},
+        {4, PANNO, "test/Panno_Isolatie"},
+		{5, BAASEL, "test/Baasel_Isolatie"},
+        {6, FONIE, "test/Fonie_Isolatie"},
+        {7, PANNO, "test/Panno_Isolatie"},
+        {8, GEMER, "test/Gemer_Isolatie"},
+		{9, FONIE, "test/Fonie_Isolatie"},
+        {10, GEMER, "test/Gemer_Isolatie"},
+        {11, PANNO, "test/Panno_Isolatie"},
+        {12, BAASEL, "test/Baasel_Isolatie"}
     },
     {   // list 2
-        {1, FONIE, "test/Fonie_Isolatie"}, {2, GEMER, "test/Gemer_Isolatie"}, {3, PANNO, "test/Panno_Isolatie"}, {4, BAASEL, "test/Baasel_Isolatie"},
-		{5, PANNO, "test/Panno_Isolatie"}, {6, GEMER, "test/Gemer_Isolatie"}, {7, BAASEL, "test/Baasel_Isolatie"}, {8, FONIE, "test/Fonie_Isolatie"}, 
-		{9, GEMER, "test/Gemer_Isolatie"}, {10, FONIE, "test/Fonie_Isolatie"}, {11, BAASEL, "test/Baasel_Isolatie"}, {12, PANNO, "test/Panno_Isolatie"}
+        {1, FONIE, "test/Fonie_Isolatie"},
+        {2, GEMER, "test/Gemer_Isolatie"},
+        {3, PANNO, "test/Panno_Isolatie"},
+        {4, BAASEL, "test/Baasel_Isolatie"},
+		{5, PANNO, "test/Panno_Isolatie"},
+        {6, GEMER, "test/Gemer_Isolatie"},
+        {7, BAASEL, "test/Baasel_Isolatie"},
+        {8, FONIE, "test/Fonie_Isolatie"}, 
+		{9, GEMER, "test/Gemer_Isolatie"},
+        {10, FONIE, "test/Fonie_Isolatie"},
+        {11, BAASEL, "test/Baasel_Isolatie"},
+        {12, PANNO, "test/Panno_Isolatie"}
     },
     {   // list 3
-        {1, GEMER, "test/Gemer_Isolatie"}, {2, FONIE, "test/Fonie_Isolatie"}, {3, DAASEL, "test/Daasel_Isolatie"}, {4, TANNO, "test/Tanno_Isolatie"}, 
-		{5, DAASEL, "test/Daasel_Isolatie"}, {6, FONIE, "test/Fonie_Isolatie"}, {7, TANNO, "test/Tanno_Isolatie"}, {8, GEMER, "test/Gemer_Isolatie"},  
-		{9, FONIE, "test/Fonie_Isolatie"}, {10, GEMER, "test/Gemer_Isolatie"}, {11, TANNO, "test/Tanno_Isolatie"}, {12, DAASEL, "test/Daasel_Isolatie"} 
+        {1, GEMER, "test/Gemer_Isolatie"},
+        {2, FONIE, "test/Fonie_Isolatie"},
+        {3, DAASEL, "test/Daasel_Isolatie"},
+        {4, TANNO, "test/Tanno_Isolatie"}, 
+		{5, DAASEL, "test/Daasel_Isolatie"},
+        {6, FONIE, "test/Fonie_Isolatie"},
+        {7, TANNO, "test/Tanno_Isolatie"},
+        {8, GEMER, "test/Gemer_Isolatie"},  
+		{9, FONIE, "test/Fonie_Isolatie"},
+        {10, GEMER, "test/Gemer_Isolatie"},
+        {11, TANNO, "test/Tanno_Isolatie"},
+        {12, DAASEL, "test/Daasel_Isolatie"} 
     },
     {   // list 4
-        {1, FONIE, "test/Fonie_Isolatie"}, {2, GEMER, "test/Gemer_Isolatie"}, {3, TANNO, "test/Tanno_Isolatie"}, {4, DAASEL, "test/Daasel_Isolatie"},
-		{5, TANNO, "test/Tanno_Isolatie"}, {6, GEMER, "test/Gemer_Isolatie"}, {7, DAASEL, "test/Daasel_Isolatie"}, {8, FONIE, "test/Fonie_Isolatie"}, 
-		{9, GEMER, "test/Gemer_Isolatie"}, {10, FONIE, "test/Fonie_Isolatie"}, {11, DAASEL, "test/Daasel_Isolatie"}, {12, TANNO, "test/Tanno_Isolatie"}
+        {1, FONIE, "test/Fonie_Isolatie"},
+        {2, GEMER, "test/Gemer_Isolatie"},
+        {3, TANNO, "test/Tanno_Isolatie"},
+        {4, DAASEL, "test/Daasel_Isolatie"},
+		{5, TANNO, "test/Tanno_Isolatie"},
+        {6, GEMER, "test/Gemer_Isolatie"},
+        {7, DAASEL, "test/Daasel_Isolatie"},
+        {8, FONIE, "test/Fonie_Isolatie"}, 
+		{9, GEMER, "test/Gemer_Isolatie"},
+        {10, FONIE, "test/Fonie_Isolatie"},
+        {11, DAASEL, "test/Daasel_Isolatie"},
+        {12, TANNO, "test/Tanno_Isolatie"}
     },
     {   // list 1
-        {1, BAASEL, "test/Baasel_Isolatie"}, {2, PANNO, "test/Panno_Isolatie"},{3, FONIE, "test/Fonie_Isolatie"}, {4, GEMER, "test/Gemer_Isolatie"},  
-		{5, FONIE, "test/Fonie_Isolatie"}, {6, PANNO, "test/Panno_Isolatie"}, {7, GEMER, "test/Gemer_Isolatie"}, {8, BAASEL, "test/Baasel_Isolatie"},
-		{9, PANNO, "test/Panno_Isolatie"}, {10, BAASEL, "test/Baasel_Isolatie"}, {11, GEMER, "test/Gemer_Isolatie"}, {12, FONIE, "test/Fonie_Isolatie"}
+        {1, BAASEL, "test/Baasel_Isolatie"},
+        {2, PANNO, "test/Panno_Isolatie"},
+        {3, FONIE, "test/Fonie_Isolatie"},
+        {4, GEMER, "test/Gemer_Isolatie"},  
+		{5, FONIE, "test/Fonie_Isolatie"},
+        {6, PANNO, "test/Panno_Isolatie"},
+        {7, GEMER, "test/Gemer_Isolatie"},
+        {8, BAASEL, "test/Baasel_Isolatie"},
+		{9, PANNO, "test/Panno_Isolatie"},
+        {10, BAASEL, "test/Baasel_Isolatie"},
+        {11, GEMER, "test/Gemer_Isolatie"},
+        {12, FONIE, "test/Fonie_Isolatie"}
     },
     {   // list 2
-        {1, PANNO, "test/Panno_Isolatie"}, {2, BAASEL, "test/Baasel_Isolatie"}, {3, GEMER, "test/Gemer_Isolatie"}, {4, FONIE, "test/Fonie_Isolatie"}, 
-		{5, GEMER, "test/Gemer_Isolatie"}, {6, BAASEL, "test/Baasel_Isolatie"}, {7, FONIE, "test/Fonie_Isolatie"}, {8, PANNO, "test/Panno_Isolatie"}, 
-		{9, BAASEL, "test/Baasel_Isolatie"}, {10, PANNO, "test/Panno_Isolatie"}, {11, FONIE, "test/Fonie_Isolatie"}, {12, GEMER, "test/Gemer_Isolatie"} 
+        {1, PANNO, "test/Panno_Isolatie"},
+        {2, BAASEL, "test/Baasel_Isolatie"},
+        {3, GEMER, "test/Gemer_Isolatie"},
+        {4, FONIE, "test/Fonie_Isolatie"}, 
+		{5, GEMER, "test/Gemer_Isolatie"},
+        {6, BAASEL, "test/Baasel_Isolatie"},
+        {7, FONIE, "test/Fonie_Isolatie"},
+        {8, PANNO, "test/Panno_Isolatie"}, 
+		{9, BAASEL, "test/Baasel_Isolatie"},
+        {10, PANNO, "test/Panno_Isolatie"},
+        {11, FONIE, "test/Fonie_Isolatie"},
+        {12, GEMER, "test/Gemer_Isolatie"} 
     },
     {   // list 3
-        {1, DAASEL, "test/Daasel_Isolatie"}, {2, TANNO, "test/Tanno_Isolatie"}, {3, FONIE, "test/Fonie_Isolatie"}, {4, GEMER, "test/Gemer_Isolatie"},
-		{5, FONIE, "test/Fonie_Isolatie"}, {6, TANNO, "test/Tanno_Isolatie"}, {7, GEMER, "test/Gemer_Isolatie"}, {8, DAASEL, "test/Daasel_Isolatie"},  
-		{9, TANNO, "test/Tanno_Isolatie"}, {10, DAASEL, "test/Daasel_Isolatie"}, {11, GEMER, "test/Gemer_Isolatie"}, {12, FONIE, "test/Fonie_Isolatie"}
+        {1, DAASEL, "test/Daasel_Isolatie"},
+        {2, TANNO, "test/Tanno_Isolatie"},
+        {3, FONIE, "test/Fonie_Isolatie"},
+        {4, GEMER, "test/Gemer_Isolatie"},
+		{5, FONIE, "test/Fonie_Isolatie"},
+        {6, TANNO, "test/Tanno_Isolatie"},
+        {7, GEMER, "test/Gemer_Isolatie"},
+        {8, DAASEL, "test/Daasel_Isolatie"},  
+		{9, TANNO, "test/Tanno_Isolatie"},
+        {10, DAASEL, "test/Daasel_Isolatie"},
+        {11, GEMER, "test/Gemer_Isolatie"},
+        {12, FONIE, "test/Fonie_Isolatie"}
     },
     {   // list 4
-        {1, TANNO, "test/Tanno_Isolatie"}, {2, DAASEL, "test/Daasel_Isolatie"}, {3, GEMER, "test/Gemer_Isolatie"}, {4, FONIE, "test/Fonie_Isolatie"}, 
-		{5, GEMER, "test/Gemer_Isolatie"}, {6, DAASEL, "test/Daasel_Isolatie"}, {7, FONIE, "test/Fonie_Isolatie"}, {8, TANNO, "test/Tanno_Isolatie"}, 
-		{9, DAASEL, "test/Daasel_Isolatie"}, {10, TANNO, "test/Tanno_Isolatie"}, {11, FONIE, "test/Fonie_Isolatie"}, {12, GEMER, "test/Gemer_Isolatie"}
+        {1, TANNO, "test/Tanno_Isolatie"},
+        {2, DAASEL, "test/Daasel_Isolatie"},
+        {3, GEMER, "test/Gemer_Isolatie"},
+        {4, FONIE, "test/Fonie_Isolatie"}, 
+		{5, GEMER, "test/Gemer_Isolatie"},
+        {6, DAASEL, "test/Daasel_Isolatie"},
+        {7, FONIE, "test/Fonie_Isolatie"},
+        {8, TANNO, "test/Tanno_Isolatie"}, 
+		{9, DAASEL, "test/Daasel_Isolatie"},
+        {10, TANNO, "test/Tanno_Isolatie"},
+        {11, FONIE, "test/Fonie_Isolatie"},
+        {12, GEMER, "test/Gemer_Isolatie"}
     },
 	  {   // list 1
-        {1, GEMER, "test/Gemer_Isolatie"}, {2, FONIE, "test/Fonie_Isolatie"}, {3, PAASEL, "test/Paasel_Isolatie"}, {4, BANNO, "test/Banno_Isolatie"},
-		{5, PAASEL, "test/Paasel_Isolatie"}, {6, FONIE, "test/Fonie_Isolatie"}, {7, BANNO, "test/Banno_Isolatie"}, {8, GEMER, "test/Gemer_Isolatie"},
-		{9, FONIE, "test/Fonie_Isolatie"}, {10, GEMER, "test/Gemer_Isolatie"}, {11, BANNO, "test/Banno_Isolatie"}, {12, PAASEL, "test/Paasel_Isolatie"}
+        {1, GEMER, "test/Gemer_Isolatie"},
+        {2, FONIE, "test/Fonie_Isolatie"},
+        {3, PAASEL, "test/Paasel_Isolatie"},
+        {4, BANNO, "test/Banno_Isolatie"},
+		{5, PAASEL, "test/Paasel_Isolatie"},
+        {6, FONIE, "test/Fonie_Isolatie"},
+        {7, BANNO, "test/Banno_Isolatie"},
+        {8, GEMER, "test/Gemer_Isolatie"},
+		{9, FONIE, "test/Fonie_Isolatie"},
+        {10, GEMER, "test/Gemer_Isolatie"},
+        {11, BANNO, "test/Banno_Isolatie"},
+        {12, PAASEL, "test/Paasel_Isolatie"}
     },
     {   // list 2
-        {1, FONIE, "test/Fonie_Isolatie"}, {2, GEMER, "test/Gemer_Isolatie"}, {3, BANNO, "test/Banno_Isolatie"}, {4, PAASEL, "test/Paasel_Isolatie"},
-		{5, BANNO, "test/Banno_Isolatie"}, {6, GEMER, "test/Gemer_Isolatie"}, {7, PAASEL, "test/Paasel_Isolatie"}, {8, FONIE, "test/Fonie_Isolatie"}, 
-		{9, GEMER, "test/Gemer_Isolatie"}, {10, FONIE, "test/Fonie_Isolatie"}, {11, PAASEL, "test/Paasel_Isolatie"}, {12, BANNO, "test/Banno_Isolatie"}		
+        {1, FONIE, "test/Fonie_Isolatie"},
+        {2, GEMER, "test/Gemer_Isolatie"},
+        {3, BANNO, "test/Banno_Isolatie"},
+        {4, PAASEL, "test/Paasel_Isolatie"},
+		{5, BANNO, "test/Banno_Isolatie"},
+        {6, GEMER, "test/Gemer_Isolatie"},
+        {7, PAASEL, "test/Paasel_Isolatie"},
+        {8, FONIE, "test/Fonie_Isolatie"}, 
+		{9, GEMER, "test/Gemer_Isolatie"},
+        {10, FONIE, "test/Fonie_Isolatie"},
+        {11, PAASEL, "test/Paasel_Isolatie"},
+        {12, BANNO, "test/Banno_Isolatie"}		
     },
     {   // list 3
-        {1, GEMER, "test/Gemer_Isolatie"}, {2, FONIE, "test/Fonie_Isolatie"}, {3, TAASEL, "test/Taasel_Isolatie"}, {4, DANNO, "test/Danno_Isolatie"},  
-		{5, TAASEL, "test/Taasel_Isolatie"}, {6, FONIE, "test/Fonie_Isolatie"}, {7, DANNO, "test/Danno_Isolatie"}, {8, GEMER, "test/Gemer_Isolatie"},
-		{9, FONIE, "test/Fonie_Isolatie"}, {10, GEMER, "test/Gemer_Isolatie"}, {11, DANNO, "test/Danno_Isolatie"} ,{12, TAASEL, "test/Taasel_Isolatie"}
+        {1, GEMER, "test/Gemer_Isolatie"},
+        {2, FONIE, "test/Fonie_Isolatie"},
+        {3, TAASEL, "test/Taasel_Isolatie"},
+        {4, DANNO, "test/Danno_Isolatie"},  
+		{5, TAASEL, "test/Taasel_Isolatie"},
+        {6, FONIE, "test/Fonie_Isolatie"},
+        {7, DANNO, "test/Danno_Isolatie"},
+        {8, GEMER, "test/Gemer_Isolatie"},
+		{9, FONIE, "test/Fonie_Isolatie"},
+        {10, GEMER, "test/Gemer_Isolatie"},
+        {11, DANNO, "test/Danno_Isolatie"},
+        {12, TAASEL, "test/Taasel_Isolatie"}
     },
     {   // list 4
-        {1, FONIE, "test/Fonie_Isolatie"}, {2, GEMER, "test/Gemer_Isolatie"}, {3, DANNO, "test/Danno_Isolatie"}, {4, TAASEL, "test/Taasel_Isolatie"},
-		{5, DANNO, "test/Danno_Isolatie"}, {6, GEMER, "test/Gemer_Isolatie"}, {7, TAASEL, "test/Taasel_Isolatie"}, {8, FONIE, "test/Fonie_Isolatie"}, 
-		{9, GEMER, "test/Gemer_Isolatie"}, {10, FONIE, "test/Fonie_Isolatie"}, {11, TAASEL, "test/Taasel_Isolatie"}, {12, DANNO, "test/Danno_Isolatie"}
+        {1, FONIE, "test/Fonie_Isolatie"},
+        {2, GEMER, "test/Gemer_Isolatie"},
+        {3, DANNO, "test/Danno_Isolatie"},
+        {4, TAASEL, "test/Taasel_Isolatie"},
+		{5, DANNO, "test/Danno_Isolatie"},
+        {6, GEMER, "test/Gemer_Isolatie"},
+        {7, TAASEL, "test/Taasel_Isolatie"},
+        {8, FONIE, "test/Fonie_Isolatie"}, 
+		{9, GEMER, "test/Gemer_Isolatie"},
+        {10, FONIE, "test/Fonie_Isolatie"},
+        {11, TAASEL, "test/Taasel_Isolatie"},
+        {12, DANNO, "test/Danno_Isolatie"}
     },
 	{   // list 1
-        {1, PAASEL, "test/Paasel_Isolatie"}, {2, BANNO, "test/Banno_Isolatie"}, {3, FONIE, "test/Fonie_Isolatie"}, {4, GEMER, "test/Gemer_Isolatie"}, 
-		{5, FONIE, "test/Fonie_Isolatie"}, {6, BANNO, "test/Banno_Isolatie"}, {7, GEMER, "test/Gemer_Isolatie"}, {8, PAASEL, "test/Paasel_Isolatie"}, 
-		{9, BANNO, "test/Banno_Isolatie"}, {10, PAASEL, "test/Paasel_Isolatie"}, {11, GEMER, "test/Gemer_Isolatie"}, {12, FONIE, "test/Fonie_Isolatie"} 	
+        {1, PAASEL, "test/Paasel_Isolatie"},
+        {2, BANNO, "test/Banno_Isolatie"},
+        {3, FONIE, "test/Fonie_Isolatie"},
+        {4, GEMER, "test/Gemer_Isolatie"}, 
+		{5, FONIE, "test/Fonie_Isolatie"},
+        {6, BANNO, "test/Banno_Isolatie"},
+        {7, GEMER, "test/Gemer_Isolatie"},
+        {8, PAASEL, "test/Paasel_Isolatie"}, 
+		{9, BANNO, "test/Banno_Isolatie"},
+        {10, PAASEL, "test/Paasel_Isolatie"},
+        {11, GEMER, "test/Gemer_Isolatie"},
+        {12, FONIE, "test/Fonie_Isolatie"} 	
     },
     {   // list 2
-        {1, BANNO, "test/Banno_Isolatie"}, {2, PAASEL, "test/Paasel_Isolatie"}, {3, GEMER, "test/Gemer_Isolatie"}, {4, FONIE, "test/Fonie_Isolatie"},
-		{5, GEMER, "test/Gemer_Isolatie"}, {6, PAASEL, "test/Paasel_Isolatie"}, {7, FONIE, "test/Fonie_Isolatie"}, {8, BANNO, "test/Banno_Isolatie"}, 
-		{9, PAASEL, "test/Paasel_Isolatie"}, {10, BANNO, "test/Banno_Isolatie"}, {11, FONIE, "test/Fonie_Isolatie"}, {12, GEMER, "test/Gemer_Isolatie"}
+        {1, BANNO, "test/Banno_Isolatie"},
+        {2, PAASEL, "test/Paasel_Isolatie"},
+        {3, GEMER, "test/Gemer_Isolatie"},
+        {4, FONIE, "test/Fonie_Isolatie"},
+		{5, GEMER, "test/Gemer_Isolatie"},
+        {6, PAASEL, "test/Paasel_Isolatie"},
+        {7, FONIE, "test/Fonie_Isolatie"},
+        {8, BANNO, "test/Banno_Isolatie"}, 
+		{9, PAASEL, "test/Paasel_Isolatie"},
+        {10, BANNO, "test/Banno_Isolatie"},
+        {11, FONIE, "test/Fonie_Isolatie"},
+        {12, GEMER, "test/Gemer_Isolatie"}
     },
     {   // list 3
-        {1, TAASEL, "test/Taasel_Isolatie"}, {2, DANNO, "test/Danno_Isolatie"}, {3, FONIE, "test/Fonie_Isolatie"}, {4, GEMER, "test/Gemer_Isolatie"},
-		{5, FONIE, "test/Fonie_Isolatie"}, {6, DANNO, "test/Danno_Isolatie"}, {7, GEMER, "test/Gemer_Isolatie"}, {8, TAASEL, "test/Taasel_Isolatie"},
-		{9, DANNO, "test/Danno_Isolatie"}, {10, TAASEL, "test/Taasel_Isolatie"}, {11, GEMER, "test/Gemer_Isolatie"}, {12, FONIE, "test/Fonie_Isolatie"} 
+        {1, TAASEL, "test/Taasel_Isolatie"},
+        {2, DANNO, "test/Danno_Isolatie"},
+        {3, FONIE, "test/Fonie_Isolatie"},
+        {4, GEMER, "test/Gemer_Isolatie"},
+		{5, FONIE, "test/Fonie_Isolatie"},
+        {6, DANNO, "test/Danno_Isolatie"},
+        {7, GEMER, "test/Gemer_Isolatie"},
+        {8, TAASEL, "test/Taasel_Isolatie"},
+		{9, DANNO, "test/Danno_Isolatie"},
+        {10, TAASEL, "test/Taasel_Isolatie"},
+        {11, GEMER, "test/Gemer_Isolatie"},
+        {12, FONIE, "test/Fonie_Isolatie"} 
     },
     {   // list 4
-        {1, DANNO, "test/Danno_Isolatie"}, {2, TAASEL, "test/Taasel_Isolatie"}, {3, GEMER, "test/Gemer_Isolatie"}, {4, FONIE, "test/Fonie_Isolatie"}, 
-		{5, GEMER, "test/Gemer_Isolatie"}, {6, TAASEL, "test/Taasel_Isolatie"}, {7, FONIE, "test/Fonie_Isolatie"}, {8, DANNO, "test/Danno_Isolatie"}, 
-		{9, TAASEL, "test/Taasel_Isolatie"}, {10, DANNO, "test/Danno_Isolatie"}, {11, FONIE, "test/Fonie_Isolatie"}, {12, GEMER, "test/Gemer_Isolatie"}
+        {1, DANNO, "test/Danno_Isolatie"},
+        {2, TAASEL, "test/Taasel_Isolatie"},
+        {3, GEMER, "test/Gemer_Isolatie"},
+        {4, FONIE, "test/Fonie_Isolatie"}, 
+		{5, GEMER, "test/Gemer_Isolatie"},
+        {6, TAASEL, "test/Taasel_Isolatie"},
+        {7, FONIE, "test/Fonie_Isolatie"},
+        {8, DANNO, "test/Danno_Isolatie"}, 
+		{9, TAASEL, "test/Taasel_Isolatie"},
+        {10, DANNO, "test/Danno_Isolatie"},
+        {11, FONIE, "test/Fonie_Isolatie"},
+        {12, GEMER, "test/Gemer_Isolatie"}
     }
 };
 
 
-const string TEST_IMAGE         = "new.png";
-
-const string ATTENTION_IMAGE    = "doll.svg";
-const string ATTENTION_SOUND1   = "chime_up.wav";
-const string ATTENTION_SOUND2   = "chime_down.wav";
