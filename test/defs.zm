@@ -43,8 +43,10 @@ const bool      SHOW_ASSIGNED_GROUP             = true;
 // Number of result tables to generate. 
 const int       NUM_RESULT_TABLES               = 1;
 
-///////
+//////
+//////
 // The following are timing parameters and other settings.
+///////
 ///////
 
 // Delay from test page display to begin of first trial.
@@ -61,10 +63,6 @@ const dur       FAM_INTERTRIAL_INTERVAL         = 250ms;
 
 // Duration of the interval between two trials -> familiarization phase.
 const dur       FAM_INTERSTIMULUS_INTERVAL      = 250ms;
-
-// Defines after how many trials the visual stimulus changes in the
-// familiarization phase.
-const int       FAM_STIM_CHANGE                 = 1; 
 
 // Maximum duration the child may look away. Disabled if 0ms
 // (and in familiarization phase by default).
