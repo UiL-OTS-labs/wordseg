@@ -20,11 +20,6 @@ HISTORY:
 
 \******************************************************************************/
 
-enum ExpPhase {
-    FAM_PHASE,  // familiarization phase
-    TEST_PHASE  // test phase.
-};
-
 
 Page test_page
 {
@@ -280,10 +275,6 @@ Page test_page
             // Set up sound clip.
             playback.device = sound_output_device;
             clip.file = stimuli_dir() + "sounds/" + sound + ".wav";
-
-            // Change layout in familiarization phase for every second item. 
-            //if (p == FAM_PHASE && index % FAM_STIM_CHANGE == 0)
-            //    layout.start_stimulus_familiarization(t);
 
             // Update status line on control window. Cleared in done() below.
             control.set_status(
