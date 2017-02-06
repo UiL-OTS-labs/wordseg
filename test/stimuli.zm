@@ -18,6 +18,7 @@ HISTORY:
 
 
 // Symbolic definition of item type.
+// Keep these in order.
 enum ItemType
 {
     PAASEL,
@@ -29,7 +30,8 @@ enum ItemType
     DANNO,
     TANNO,
     FONIE,
-    GEMER   
+    GEMER,
+    ITEM_SENTINAL // just a place holder for the last item.
 }
 
 
@@ -41,7 +43,7 @@ record TestItem
     string      sndfn;          // sound stimulus filename-stub
 }
 
-const string TEST_IMAGE         = "new.png";
+//const string TEST_IMAGE         = "new.png";
 
 const string ATTENTION_IMAGE    = "doll.svg";
 const string ATTENTION_SOUND1   = "chime_up.wav";
@@ -137,14 +139,14 @@ TestItem[..][..] fam_items =
 };
 
 
-string[..] sound_items = {"1A", "1B", "2A", "2B", "3A", "3B"};
+// string[..] sound_items = {"1A", "1B", "2A", "2B", "3A", "3B"};
 
 // Item table used in the test phase.
 //   index 1: list number
 //   index 2: item number
 TestItem[..][..] test_items =
 {
-    {   // list 1
+    {   // list 1 1
         {1, GEMER, "test/Gemer_Isolatie"},
         {2, FONIE, "test/Fonie_Isolatie"},
         {3, BAASEL, "test/Baasel_Isolatie"},
@@ -200,7 +202,7 @@ TestItem[..][..] test_items =
         {11, DAASEL, "test/Daasel_Isolatie"},
         {12, TANNO, "test/Tanno_Isolatie"}
     },
-    {   // list 1
+    {   // list 1 2
         {1, BAASEL, "test/Baasel_Isolatie"},
         {2, PANNO, "test/Panno_Isolatie"},
         {3, FONIE, "test/Fonie_Isolatie"},
@@ -256,7 +258,7 @@ TestItem[..][..] test_items =
         {11, FONIE, "test/Fonie_Isolatie"},
         {12, GEMER, "test/Gemer_Isolatie"}
     },
-	  {   // list 1
+	  {   // list 1 3
         {1, GEMER, "test/Gemer_Isolatie"},
         {2, FONIE, "test/Fonie_Isolatie"},
         {3, PAASEL, "test/Paasel_Isolatie"},
@@ -312,7 +314,7 @@ TestItem[..][..] test_items =
         {11, TAASEL, "test/Taasel_Isolatie"},
         {12, DANNO, "test/Danno_Isolatie"}
     },
-	{   // list 1
+	{   // list 1 4
         {1, PAASEL, "test/Paasel_Isolatie"},
         {2, BANNO, "test/Banno_Isolatie"},
         {3, FONIE, "test/Fonie_Isolatie"},

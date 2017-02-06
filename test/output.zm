@@ -13,11 +13,18 @@ HISTORY:
 
 \******************************************************************************/
 
+enum ExpPhase {
+    FAM_PHASE,  // familiarization phase
+    TEST_PHASE  // test phase.
+};
+
 
 // Test phase output table record, defining what is to be logged for
 // each trial.
 record TestOutput
 {
+
+    ExpPhase    phase;          // In which phase we are.
     int         trialnum;       // trial number
 
     int         number;         // item number
@@ -26,20 +33,24 @@ record TestOutput
     int         cumlt;          // cumulative looking time [ms]
     int         cumnlt;         // cumulative not-looking time [ms]
     bool        lookedaway;     // if set, infant looked away too long
+
+    dur         cumlt_s1;       // cumulative looking time over trials [ms]
+    dur         cumlt_s2;       // cumulative looking time over trials [ms]
 }
 
+// Familiarization output table
+TestOutput[..] fam_output;
 
 // Test phase output table.
 TestOutput[..] test_output;
-
 
 //------------------------------------------------------------------------------
 
 // Appends one row of data to familiarization phase output table.
 void fam_output_append(TestOutput data)
 {
-    test_output.size = test_output.size + 1;
-    test_output[test_output.size-1] = data;
+    fam_output.size = fam_output.size + 1;
+    fam_output[fam_output.size-1] = data;
 }
 
 
@@ -48,9 +59,9 @@ void fam_output_save()
 {
     // Save output table as CSV file. The filename format is:
     //   <dbname>/<dbnum>/<expname>/ses<sesid>-<tblnum>.csv
-    test_output.save(expdb.experiment.session.table_filename(1) + "-Fam", 
+    fam_output.save(expdb.experiment.session.table_filename(1), 
         "Familiarization phase results");
-    test_output.size = 0;
+    fam_output.size = 0;
 }
 
 // Appends one row of data to test phase output table.
