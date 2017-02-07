@@ -163,12 +163,6 @@ Block fam_block
                 // Clear eye-tracker status line.
                 eyetracker.send_command("record_status_message ''");
                 nth_stim = (nth_stim + 1) % fam_items[selected_group].size;
-
-                print("fn = " + string(test_page.auditory_stimulus.clip.file));
-                print(" sound start = " + string(test_page.auditory_stimulus.start_time));
-                print(" sound stop =" + string(test_page.auditory_stimulus.finish_time));
-                println(" sound dur =" + string(test_page.auditory_stimulus.finish_time - test_page.auditory_stimulus.start_time));
-
             }
         }
 
