@@ -1,0 +1,146 @@
+File type = "ooTextFile"
+Object class = "TextGrid"
+
+xmin = 0 
+xmax = 36.698027210884355 
+tiers? <exists> 
+size = 1 
+item []: 
+    item [1]:
+        class = "IntervalTier" 
+        name = "labels" 
+        xmin = 0 
+        xmax = 36.698027210884355 
+        intervals: size = 33 
+        intervals [1]:
+            xmin = 0 
+            xmax = 0.5 
+            text = "silenceBegin" 
+        intervals [2]:
+            xmin = 0.5 
+            xmax = 1.559047619047619 
+            text = "Daasel_8" 
+        intervals [3]:
+            xmin = 1.559047619047619 
+            xmax = 2.5784580498866214 
+            text = "isiSilence1" 
+        intervals [4]:
+            xmin = 2.5784580498866214 
+            xmax = 3.9991609977324263 
+            text = "daasel_1" 
+        intervals [5]:
+            xmin = 3.9991609977324263 
+            xmax = 5.270385487528345 
+            text = "isiSilence2" 
+        intervals [6]:
+            xmin = 5.270385487528345 
+            xmax = 6.747528344671202 
+            text = "daasel_3" 
+        intervals [7]:
+            xmin = 6.747528344671202 
+            xmax = 7.515238095238095 
+            text = "isiSilence3" 
+        intervals [8]:
+            xmin = 7.515238095238095 
+            xmax = 8.725034013605441 
+            text = "Daasel_7" 
+        intervals [9]:
+            xmin = 8.725034013605441 
+            xmax = 9.600045351473922 
+            text = "isiSilence4" 
+        intervals [10]:
+            xmin = 9.600045351473922 
+            xmax = 11.323401360544217 
+            text = "daasel_5" 
+        intervals [11]:
+            xmin = 11.323401360544217 
+            xmax = 12.047641723356008 
+            text = "isiSilence5" 
+        intervals [12]:
+            xmin = 12.047641723356008 
+            xmax = 13.51718820861678 
+            text = "daasel_4" 
+        intervals [13]:
+            xmin = 13.51718820861678 
+            xmax = 14.732063492063492 
+            text = "isiSilence6" 
+        intervals [14]:
+            xmin = 14.732063492063492 
+            xmax = 16.198072562358277 
+            text = "daasel_2" 
+        intervals [15]:
+            xmin = 16.198072562358277 
+            xmax = 17.437097505668934 
+            text = "isiSilence7" 
+        intervals [16]:
+            xmin = 17.437097505668934 
+            xmax = 18.45124716553288 
+            text = "daasel_6" 
+        intervals [17]:
+            xmin = 18.45124716553288 
+            xmax = 19.435396825396825 
+            text = "isiSilence8" 
+        intervals [18]:
+            xmin = 19.435396825396825 
+            xmax = 21.15875283446712 
+            text = "daasel_5" 
+        intervals [19]:
+            xmin = 21.15875283446712 
+            xmax = 22.13952380952381 
+            text = "isiSilence9" 
+        intervals [20]:
+            xmin = 22.13952380952381 
+            xmax = 23.349319727891157 
+            text = "Daasel_7" 
+        intervals [21]:
+            xmin = 23.349319727891157 
+            xmax = 24.23764172335601 
+            text = "isiSilence10" 
+        intervals [22]:
+            xmin = 24.23764172335601 
+            xmax = 25.658344671201814 
+            text = "daasel_1" 
+        intervals [23]:
+            xmin = 25.658344671201814 
+            xmax = 26.504104308390023 
+            text = "isiSilence11" 
+        intervals [24]:
+            xmin = 26.504104308390023 
+            xmax = 27.98124716553288 
+            text = "daasel_3" 
+        intervals [25]:
+            xmin = 27.98124716553288 
+            xmax = 28.78104308390023 
+            text = "isiSilence12" 
+        intervals [26]:
+            xmin = 28.78104308390023 
+            xmax = 29.840090702947847 
+            text = "Daasel_8" 
+        intervals [27]:
+            xmin = 29.840090702947847 
+            xmax = 30.570544217687075 
+            text = "isiSilence13" 
+        intervals [28]:
+            xmin = 30.570544217687075 
+            xmax = 32.04009070294784 
+            text = "daasel_4" 
+        intervals [29]:
+            xmin = 32.04009070294784 
+            xmax = 32.97430839002267 
+            text = "isiSilence14" 
+        intervals [30]:
+            xmin = 32.97430839002267 
+            xmax = 34.44031746031745 
+            text = "daasel_2" 
+        intervals [31]:
+            xmin = 34.44031746031745 
+            xmax = 35.1838775510204 
+            text = "isiSilence15" 
+        intervals [32]:
+            xmin = 35.1838775510204 
+            xmax = 36.19802721088435 
+            text = "daasel_6" 
+        intervals [33]:
+            xmin = 36.19802721088435 
+            xmax = 36.698027210884355 
+            text = "endSilence" 

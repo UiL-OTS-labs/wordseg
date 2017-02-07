@@ -1,0 +1,146 @@
+File type = "ooTextFile"
+Object class = "TextGrid"
+
+xmin = 0 
+xmax = 38.07802721088436 
+tiers? <exists> 
+size = 1 
+item []: 
+    item [1]:
+        class = "IntervalTier" 
+        name = "labels" 
+        xmin = 0 
+        xmax = 38.07802721088436 
+        intervals: size = 33 
+        intervals [1]:
+            xmin = 0 
+            xmax = 0.5 
+            text = "silenceBegin" 
+        intervals [2]:
+            xmin = 0.5 
+            xmax = 1.6037868480725623 
+            text = "Fonie_7" 
+        intervals [3]:
+            xmin = 1.6037868480725623 
+            xmax = 2.736281179138322 
+            text = "isiSilence1" 
+        intervals [4]:
+            xmin = 2.736281179138322 
+            xmax = 4.940839002267573 
+            text = "fonie_4" 
+        intervals [5]:
+            xmin = 4.940839002267573 
+            xmax = 5.8199092970521535 
+            text = "isiSilence2" 
+        intervals [6]:
+            xmin = 5.8199092970521535 
+            xmax = 7.280136054421768 
+            text = "fonie_3" 
+        intervals [7]:
+            xmin = 7.280136054421768 
+            xmax = 8.334489795918367 
+            text = "isiSilence3" 
+        intervals [8]:
+            xmin = 8.334489795918367 
+            xmax = 9.408140589569161 
+            text = "Fonie_8" 
+        intervals [9]:
+            xmin = 9.408140589569161 
+            xmax = 10.224920634920634 
+            text = "isiSilence4" 
+        intervals [10]:
+            xmin = 10.224920634920634 
+            xmax = 11.554467120181405 
+            text = "fonie_1" 
+        intervals [11]:
+            xmin = 11.554467120181405 
+            xmax = 12.536145124716553 
+            text = "isiSilence5" 
+        intervals [12]:
+            xmin = 12.536145124716553 
+            xmax = 14.191360544217687 
+            text = "fonie_6" 
+        intervals [13]:
+            xmin = 14.191360544217687 
+            xmax = 15.481201814058958 
+            text = "isiSilence6" 
+        intervals [14]:
+            xmin = 15.481201814058958 
+            xmax = 16.725578231292516 
+            text = "fonie_5" 
+        intervals [15]:
+            xmin = 16.725578231292516 
+            xmax = 17.55920634920635 
+            text = "isiSilence7" 
+        intervals [16]:
+            xmin = 17.55920634920635 
+            xmax = 18.593083900226755 
+            text = "fonie_2" 
+        intervals [17]:
+            xmin = 18.593083900226755 
+            xmax = 19.561360544217685 
+            text = "isiSilence8" 
+        intervals [18]:
+            xmin = 19.561360544217685 
+            xmax = 20.890907029478456 
+            text = "fonie_1" 
+        intervals [19]:
+            xmin = 20.890907029478456 
+            xmax = 21.983129251700678 
+            text = "isiSilence9" 
+        intervals [20]:
+            xmin = 21.983129251700678 
+            xmax = 23.63834467120181 
+            text = "fonie_6" 
+        intervals [21]:
+            xmin = 23.63834467120181 
+            xmax = 24.663083900226752 
+            text = "isiSilence10" 
+        intervals [22]:
+            xmin = 24.663083900226752 
+            xmax = 25.69696145124716 
+            text = "fonie_2" 
+        intervals [23]:
+            xmin = 25.69696145124716 
+            xmax = 26.792358276643984 
+            text = "isiSilence11" 
+        intervals [24]:
+            xmin = 26.792358276643984 
+            xmax = 28.996916099773237 
+            text = "fonie_4" 
+        intervals [25]:
+            xmin = 28.996916099773237 
+            xmax = 29.861111111111107 
+            text = "isiSilence12" 
+        intervals [26]:
+            xmin = 29.861111111111107 
+            xmax = 30.96489795918367 
+            text = "Fonie_7" 
+        intervals [27]:
+            xmin = 30.96489795918367 
+            xmax = 32.20498866213151 
+            text = "isiSilence13" 
+        intervals [28]:
+            xmin = 32.20498866213151 
+            xmax = 33.66521541950112 
+            text = "fonie_3" 
+        intervals [29]:
+            xmin = 33.66521541950112 
+            xmax = 34.54625850340135 
+            text = "isiSilence14" 
+        intervals [30]:
+            xmin = 34.54625850340135 
+            xmax = 35.61990929705214 
+            text = "Fonie_8" 
+        intervals [31]:
+            xmin = 35.61990929705214 
+            xmax = 36.333650793650776 
+            text = "isiSilence15" 
+        intervals [32]:
+            xmin = 36.333650793650776 
+            xmax = 37.578027210884336 
+            text = "fonie_5" 
+        intervals [33]:
+            xmin = 37.578027210884336 
+            xmax = 38.07802721088436 
+            text = "endSilence" 

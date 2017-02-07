@@ -1,0 +1,146 @@
+File type = "ooTextFile"
+Object class = "TextGrid"
+
+xmin = 0 
+xmax = 30.865668934240365 
+tiers? <exists> 
+size = 1 
+item []: 
+    item [1]:
+        class = "IntervalTier" 
+        name = "labels" 
+        xmin = 0 
+        xmax = 30.865668934240365 
+        intervals: size = 33 
+        intervals [1]:
+            xmin = 0 
+            xmax = 0.5 
+            text = "silenceBegin" 
+        intervals [2]:
+            xmin = 0.5 
+            xmax = 1.6083446712018141 
+            text = "panno_4" 
+        intervals [3]:
+            xmin = 1.6083446712018141 
+            xmax = 2.528639455782313 
+            text = "isiSilence1" 
+        intervals [4]:
+            xmin = 2.528639455782313 
+            xmax = 3.270952380952381 
+            text = "Panno_7" 
+        intervals [5]:
+            xmin = 3.270952380952381 
+            xmax = 4.233151927437642 
+            text = "isiSilence2" 
+        intervals [6]:
+            xmin = 4.233151927437642 
+            xmax = 5.78 
+            text = "panno_3" 
+        intervals [7]:
+            xmin = 5.78 
+            xmax = 6.503628117913832 
+            text = "isiSilence3" 
+        intervals [8]:
+            xmin = 6.503628117913832 
+            xmax = 7.555941043083901 
+            text = "panno_6" 
+        intervals [9]:
+            xmin = 7.555941043083901 
+            xmax = 8.307573696145125 
+            text = "isiSilence4" 
+        intervals [10]:
+            xmin = 8.307573696145125 
+            xmax = 9.205827664399093 
+            text = "Panno_8" 
+        intervals [11]:
+            xmin = 9.205827664399093 
+            xmax = 10.209614512471656 
+            text = "isiSilence5" 
+        intervals [12]:
+            xmin = 10.209614512471656 
+            xmax = 11.176507936507937 
+            text = "panno_5" 
+        intervals [13]:
+            xmin = 11.176507936507937 
+            xmax = 12.021383219954648 
+            text = "isiSilence6" 
+        intervals [14]:
+            xmin = 12.021383219954648 
+            xmax = 12.865510204081632 
+            text = "panno_2" 
+        intervals [15]:
+            xmin = 12.865510204081632 
+            xmax = 13.968820861678005 
+            text = "isiSilence7" 
+        intervals [16]:
+            xmin = 13.968820861678005 
+            xmax = 15.049410430839002 
+            text = "panno_1" 
+        intervals [17]:
+            xmin = 15.049410430839002 
+            xmax = 16.003492063492065 
+            text = "isiSilence8" 
+        intervals [18]:
+            xmin = 16.003492063492065 
+            xmax = 16.901746031746033 
+            text = "Panno_8" 
+        intervals [19]:
+            xmin = 16.901746031746033 
+            xmax = 17.73573696145125 
+            text = "isiSilence9" 
+        intervals [20]:
+            xmin = 17.73573696145125 
+            xmax = 18.84408163265306 
+            text = "panno_4" 
+        intervals [21]:
+            xmin = 18.84408163265306 
+            xmax = 19.551519274376417 
+            text = "isiSilence10" 
+        intervals [22]:
+            xmin = 19.551519274376417 
+            xmax = 20.3956462585034 
+            text = "panno_2" 
+        intervals [23]:
+            xmin = 20.3956462585034 
+            xmax = 21.320226757369614 
+            text = "isiSilence11" 
+        intervals [24]:
+            xmin = 21.320226757369614 
+            xmax = 22.867074829931973 
+            text = "panno_3" 
+        intervals [25]:
+            xmin = 22.867074829931973 
+            xmax = 23.60031746031746 
+            text = "isiSilence12" 
+        intervals [26]:
+            xmin = 23.60031746031746 
+            xmax = 24.56721088435374 
+            text = "panno_5" 
+        intervals [27]:
+            xmin = 24.56721088435374 
+            xmax = 25.7384126984127 
+            text = "isiSilence13" 
+        intervals [28]:
+            xmin = 25.7384126984127 
+            xmax = 26.819002267573698 
+            text = "panno_1" 
+        intervals [29]:
+            xmin = 26.819002267573698 
+            xmax = 27.70229024943311 
+            text = "isiSilence14" 
+        intervals [30]:
+            xmin = 27.70229024943311 
+            xmax = 28.444603174603177 
+            text = "Panno_7" 
+        intervals [31]:
+            xmin = 28.444603174603177 
+            xmax = 29.313356009070297 
+            text = "isiSilence15" 
+        intervals [32]:
+            xmin = 29.313356009070297 
+            xmax = 30.365668934240365 
+            text = "panno_6" 
+        intervals [33]:
+            xmin = 30.365668934240365 
+            xmax = 30.865668934240365 
+            text = "endSilence" 

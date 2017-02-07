@@ -1,0 +1,66 @@
+File type = "ooTextFile"
+Object class = "TextGrid"
+
+xmin = 0 
+xmax = 35.40789115646258 
+tiers? <exists> 
+size = 1 
+item []: 
+    item [1]:
+        class = "IntervalTier" 
+        name = "labels" 
+        xmin = 0 
+        xmax = 35.40789115646258 
+        intervals: size = 13 
+        intervals [1]:
+            xmin = 0 
+            xmax = 0.5 
+            text = "silenceBegin" 
+        intervals [2]:
+            xmin = 0.5 
+            xmax = 4.518548752834467 
+            text = "1_ErgGeweldig_Banno_" 
+        intervals [3]:
+            xmin = 4.518548752834467 
+            xmax = 5.172834467120181 
+            text = "isiSilence1" 
+        intervals [4]:
+            xmin = 5.172834467120181 
+            xmax = 12.176167800453515 
+            text = "2_MooieOude_Banno_" 
+        intervals [5]:
+            xmin = 12.176167800453515 
+            xmax = 12.899977324263038 
+            text = "isiSilence2" 
+        intervals [6]:
+            xmin = 12.899977324263038 
+            xmax = 17.217392290249432 
+            text = "3_MensenZien_Banno_" 
+        intervals [7]:
+            xmin = 17.217392290249432 
+            xmax = 17.93687074829932 
+            text = "isiSilence3" 
+        intervals [8]:
+            xmin = 17.93687074829932 
+            xmax = 22.04886621315193 
+            text = "4_VaakBruiner_Banno_" 
+        intervals [9]:
+            xmin = 22.04886621315193 
+            xmax = 22.8762358276644 
+            text = "isiSilence4" 
+        intervals [10]:
+            xmin = 22.8762358276644 
+            xmax = 28.15190476190476 
+            text = "5_GraagBuiten_Banno_" 
+        intervals [11]:
+            xmin = 28.15190476190476 
+            xmax = 28.89333333333333 
+            text = "isiSilence5" 
+        intervals [12]:
+            xmin = 28.89333333333333 
+            xmax = 34.90789115646258 
+            text = "6_GezienNieuwe_Banno_" 
+        intervals [13]:
+            xmin = 34.90789115646258 
+            xmax = 35.40789115646258 
+            text = "endSilence" 

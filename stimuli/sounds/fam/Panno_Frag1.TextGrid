@@ -1,0 +1,66 @@
+File type = "ooTextFile"
+Object class = "TextGrid"
+
+xmin = 0 
+xmax = 32.661201814058956 
+tiers? <exists> 
+size = 1 
+item []: 
+    item [1]:
+        class = "IntervalTier" 
+        name = "labels" 
+        xmin = 0 
+        xmax = 32.661201814058956 
+        intervals: size = 13 
+        intervals [1]:
+            xmin = 0 
+            xmax = 0.5 
+            text = "silenceBegin" 
+        intervals [2]:
+            xmin = 0.5 
+            xmax = 5.042585034013605 
+            text = "1_OpZolder_Panno_" 
+        intervals [3]:
+            xmin = 5.042585034013605 
+            xmax = 5.862947845804989 
+            text = "isiSilence1" 
+        intervals [4]:
+            xmin = 5.862947845804989 
+            xmax = 12.293015873015873 
+            text = "2_BoerBezoek_Panno_" 
+        intervals [5]:
+            xmin = 12.293015873015873 
+            xmax = 12.80390022675737 
+            text = "isiSilence2" 
+        intervals [6]:
+            xmin = 12.80390022675737 
+            xmax = 18.099455782312926 
+            text = "3_MierOude_Panno_" 
+        intervals [7]:
+            xmin = 18.099455782312926 
+            xmax = 18.821292517006803 
+            text = "isiSilence3" 
+        intervals [8]:
+            xmin = 18.821292517006803 
+            xmax = 23.100430839002268 
+            text = "4_MeerGaten_Panno_" 
+        intervals [9]:
+            xmin = 23.100430839002268 
+            xmax = 23.684489795918367 
+            text = "isiSilence4" 
+        intervals [10]:
+            xmin = 23.684489795918367 
+            xmax = 26.901541950113376 
+            text = "5_WilAndere_Panno_" 
+        intervals [11]:
+            xmin = 26.901541950113376 
+            xmax = 27.740317460317456 
+            text = "isiSilence5" 
+        intervals [12]:
+            xmin = 27.740317460317456 
+            xmax = 32.161201814058956 
+            text = "6_NieuweBlijer_Panno_" 
+        intervals [13]:
+            xmin = 32.161201814058956 
+            xmax = 32.661201814058956 
+            text = "endSilence" 

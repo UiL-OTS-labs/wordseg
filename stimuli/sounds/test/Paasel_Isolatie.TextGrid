@@ -1,0 +1,146 @@
+File type = "ooTextFile"
+Object class = "TextGrid"
+
+xmin = 0 
+xmax = 35.320090702947844 
+tiers? <exists> 
+size = 1 
+item []: 
+    item [1]:
+        class = "IntervalTier" 
+        name = "labels" 
+        xmin = 0 
+        xmax = 35.320090702947844 
+        intervals: size = 33 
+        intervals [1]:
+            xmin = 0 
+            xmax = 0.5 
+            text = "silenceBegin" 
+        intervals [2]:
+            xmin = 0.5 
+            xmax = 1.3531972789115647 
+            text = "paasel_4" 
+        intervals [3]:
+            xmin = 1.3531972789115647 
+            xmax = 2.3818367346938776 
+            text = "isiSilence1" 
+        intervals [4]:
+            xmin = 2.3818367346938776 
+            xmax = 3.7701587301587303 
+            text = "paasel_5" 
+        intervals [5]:
+            xmin = 3.7701587301587303 
+            xmax = 5.0534693877551025 
+            text = "isiSilence2" 
+        intervals [6]:
+            xmin = 5.0534693877551025 
+            xmax = 6.283242630385488 
+            text = "paasel_3" 
+        intervals [7]:
+            xmin = 6.283242630385488 
+            xmax = 7.557505668934241 
+            text = "isiSilence3" 
+        intervals [8]:
+            xmin = 7.557505668934241 
+            xmax = 8.46530612244898 
+            text = "Paasel_7" 
+        intervals [9]:
+            xmin = 8.46530612244898 
+            xmax = 9.282018140589571 
+            text = "isiSilence4" 
+        intervals [10]:
+            xmin = 9.282018140589571 
+            xmax = 10.414285714285716 
+            text = "paasel_1" 
+        intervals [11]:
+            xmin = 10.414285714285716 
+            xmax = 11.1165306122449 
+            text = "isiSilence5" 
+        intervals [12]:
+            xmin = 11.1165306122449 
+            xmax = 12.429092970521543 
+            text = "paasel_2" 
+        intervals [13]:
+            xmin = 12.429092970521543 
+            xmax = 13.592857142857143 
+            text = "isiSilence6" 
+        intervals [14]:
+            xmin = 13.592857142857143 
+            xmax = 14.513628117913832 
+            text = "Paasel_8" 
+        intervals [15]:
+            xmin = 14.513628117913832 
+            xmax = 15.232290249433106 
+            text = "isiSilence7" 
+        intervals [16]:
+            xmin = 15.232290249433106 
+            xmax = 16.79764172335601 
+            text = "paasel_6" 
+        intervals [17]:
+            xmin = 16.79764172335601 
+            xmax = 17.99609977324263 
+            text = "isiSilence8" 
+        intervals [18]:
+            xmin = 17.99609977324263 
+            xmax = 18.91687074829932 
+            text = "Paasel_8" 
+        intervals [19]:
+            xmin = 18.91687074829932 
+            xmax = 19.88047619047619 
+            text = "isiSilence9" 
+        intervals [20]:
+            xmin = 19.88047619047619 
+            xmax = 21.012743764172335 
+            text = "paasel_1" 
+        intervals [21]:
+            xmin = 21.012743764172335 
+            xmax = 22.058548752834465 
+            text = "isiSilence10" 
+        intervals [22]:
+            xmin = 22.058548752834465 
+            xmax = 23.28832199546485 
+            text = "paasel_3" 
+        intervals [23]:
+            xmin = 23.28832199546485 
+            xmax = 24.573537414965987 
+            text = "isiSilence11" 
+        intervals [24]:
+            xmin = 24.573537414965987 
+            xmax = 25.426734693877552 
+            text = "paasel_4" 
+        intervals [25]:
+            xmin = 25.426734693877552 
+            xmax = 26.32716553287982 
+            text = "isiSilence12" 
+        intervals [26]:
+            xmin = 26.32716553287982 
+            xmax = 27.715487528344674 
+            text = "paasel_5" 
+        intervals [27]:
+            xmin = 27.715487528344674 
+            xmax = 28.895555555555557 
+            text = "isiSilence13" 
+        intervals [28]:
+            xmin = 28.895555555555557 
+            xmax = 29.803356009070296 
+            text = "Paasel_7" 
+        intervals [29]:
+            xmin = 29.803356009070296 
+            xmax = 30.966190476190476 
+            text = "isiSilence14" 
+        intervals [30]:
+            xmin = 30.966190476190476 
+            xmax = 32.27875283446712 
+            text = "paasel_2" 
+        intervals [31]:
+            xmin = 32.27875283446712 
+            xmax = 33.25473922902494 
+            text = "isiSilence15" 
+        intervals [32]:
+            xmin = 33.25473922902494 
+            xmax = 34.820090702947844 
+            text = "paasel_6" 
+        intervals [33]:
+            xmin = 34.820090702947844 
+            xmax = 35.320090702947844 
+            text = "endSilence" 

@@ -1,0 +1,146 @@
+File type = "ooTextFile"
+Object class = "TextGrid"
+
+xmin = 0 
+xmax = 38.27056689342404 
+tiers? <exists> 
+size = 1 
+item []: 
+    item [1]:
+        class = "IntervalTier" 
+        name = "labels" 
+        xmin = 0 
+        xmax = 38.27056689342404 
+        intervals: size = 33 
+        intervals [1]:
+            xmin = 0 
+            xmax = 0.5 
+            text = "silenceBegin" 
+        intervals [2]:
+            xmin = 0.5 
+            xmax = 1.7715419501133787 
+            text = "gemer_1" 
+        intervals [3]:
+            xmin = 1.7715419501133787 
+            xmax = 3.0129478458049888 
+            text = "isiSilence1" 
+        intervals [4]:
+            xmin = 3.0129478458049888 
+            xmax = 4.679637188208617 
+            text = "gemer_2" 
+        intervals [5]:
+            xmin = 4.679637188208617 
+            xmax = 5.774126984126984 
+            text = "isiSilence2" 
+        intervals [6]:
+            xmin = 5.774126984126984 
+            xmax = 6.821541950113379 
+            text = "Gemer_8" 
+        intervals [7]:
+            xmin = 6.821541950113379 
+            xmax = 7.998548752834467 
+            text = "isiSilence3" 
+        intervals [8]:
+            xmin = 7.998548752834467 
+            xmax = 9.36297052154195 
+            text = "gemer_3" 
+        intervals [9]:
+            xmin = 9.36297052154195 
+            xmax = 10.569229024943311 
+            text = "isiSilence4" 
+        intervals [10]:
+            xmin = 10.569229024943311 
+            xmax = 11.591020408163267 
+            text = "gemer_4" 
+        intervals [11]:
+            xmin = 11.591020408163267 
+            xmax = 12.658616780045353 
+            text = "isiSilence5" 
+        intervals [12]:
+            xmin = 12.658616780045353 
+            xmax = 13.792131519274378 
+            text = "gemer_6" 
+        intervals [13]:
+            xmin = 13.792131519274378 
+            xmax = 14.524263038548755 
+            text = "isiSilence6" 
+        intervals [14]:
+            xmin = 14.524263038548755 
+            xmax = 16.9084126984127 
+            text = "gemer_5" 
+        intervals [15]:
+            xmin = 16.9084126984127 
+            xmax = 17.667845804988666 
+            text = "isiSilence7" 
+        intervals [16]:
+            xmin = 17.667845804988666 
+            xmax = 18.61154195011338 
+            text = "Gemer_7" 
+        intervals [17]:
+            xmin = 18.61154195011338 
+            xmax = 19.772834467120184 
+            text = "isiSilence8" 
+        intervals [18]:
+            xmin = 19.772834467120184 
+            xmax = 21.04437641723356 
+            text = "gemer_1" 
+        intervals [19]:
+            xmin = 21.04437641723356 
+            xmax = 22.088185941043086 
+            text = "isiSilence9" 
+        intervals [20]:
+            xmin = 22.088185941043086 
+            xmax = 24.47233560090703 
+            text = "gemer_5" 
+        intervals [21]:
+            xmin = 24.47233560090703 
+            xmax = 25.740022675736963 
+            text = "isiSilence10" 
+        intervals [22]:
+            xmin = 25.740022675736963 
+            xmax = 26.76181405895692 
+            text = "gemer_4" 
+        intervals [23]:
+            xmin = 26.76181405895692 
+            xmax = 27.86514739229025 
+            text = "isiSilence11" 
+        intervals [24]:
+            xmin = 27.86514739229025 
+            xmax = 29.53183673469388 
+            text = "gemer_2" 
+        intervals [25]:
+            xmin = 29.53183673469388 
+            xmax = 30.53639455782313 
+            text = "isiSilence12" 
+        intervals [26]:
+            xmin = 30.53639455782313 
+            xmax = 31.583809523809524 
+            text = "Gemer_8" 
+        intervals [27]:
+            xmin = 31.583809523809524 
+            xmax = 32.652585034013605 
+            text = "isiSilence13" 
+        intervals [28]:
+            xmin = 32.652585034013605 
+            xmax = 34.017006802721085 
+            text = "gemer_3" 
+        intervals [29]:
+            xmin = 34.017006802721085 
+            xmax = 34.97879818594104 
+            text = "isiSilence14" 
+        intervals [30]:
+            xmin = 34.97879818594104 
+            xmax = 35.92249433106576 
+            text = "Gemer_7" 
+        intervals [31]:
+            xmin = 35.92249433106576 
+            xmax = 36.63705215419501 
+            text = "isiSilence15" 
+        intervals [32]:
+            xmin = 36.63705215419501 
+            xmax = 37.77056689342404 
+            text = "gemer_6" 
+        intervals [33]:
+            xmin = 37.77056689342404 
+            xmax = 38.27056689342404 
+            text = "endSilence" 
