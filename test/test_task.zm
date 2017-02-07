@@ -1,0 +1,136 @@
+/******************************************************************************\
+FILE:           task.zm
+AUTHOR:         Maarten Duijndam
+
+DESCRIPTION: Describes the familiarization and test phase of the experiment.
+
+\******************************************************************************/
+
+import eyetracker_eyelink_infant;
+import stimuli;
+import grouping;
+import defs;
+import output;
+import test_page;
+import std_etcal_page;
+
+
+Block test_block
+{
+
+    Block test
+    {
+        TestItem        item;   // current item
+        TestOutput      output; // current output table row
+
+        on_event:entry()
+        {
+            // Randomize test items table.
+            // if (shuffle_test_items() != OK) terminate;
+
+            num_cycles = test_items[selected_group].size;
+
+            // to 1.4 => new file format eye-tracker.
+            int listnum = selected_group + 1;
+            int recordingnum = 0;
+            string edfname = 
+                format(expdb.experiment.session.id, 4) + "_" + 
+                format(listnum, 2) + "_" + 
+                format(recordingnum, 2);
+
+            // Let eye-tracker open a data file. 
+            eyetracker.open_data_file(
+                edfname, 
+                expdb.experiment.id, 
+                expdb.researcher.id, 
+                expdb.participant.id, 
+                expdb.experiment.session.id, 
+                listnum, recordingnum);
+            eyetracker.print_to_data_file("Preferential Listening Segmentation");
+
+            // Prepare test page.
+            test_page.setup(TEST_PHASE);
+        }
+
+
+        on_event:exit()
+        {
+            test_page.cleanup();
+
+            eyetracker.abort();
+            eyetracker.close_data_file();
+
+            // Save test phase output table as CSV file.
+            test_output_save();
+
+            // Fetch the data
+            eyetracker.retrieve_data_files();
+        }
+
+
+        Trial trial
+        {
+            on_event:entry()
+            {
+                item = test_items[selected_group][test.cycle];
+
+                // Add begin of trial message to eye-tracker data file for
+                // analysis with the Fixation tool (Cozijn 1994).
+                eyetracker.print_to_data_file("trialbeg " +
+                    string(item.number) + " " +
+                    string(test.cycle + 1) + " " +
+                    string(item.number) + " " +
+                    string(item.type));
+                eyetracker.print_to_data_file("plafile " +
+                    string(item.type) + 
+                    string(item.number) + ".bmp");
+
+                // Show information on eye-tracker screen.
+                eyetracker.send_command("record_status_message "
+                    "'Test trial " + string(test.cycle+1) + "'");
+
+                bool present_attention = true;
+
+                // Start trial.
+                test_page.action(
+                        this,
+                        item,
+                        reference_time,
+                        present_attention,
+                        test.cycle
+                        );
+            }
+
+
+            on_event:exit()
+            {
+                // Add new row to test output table.
+                TestOutput output;
+                output.phase = TEST_PHASE;
+                output.trialnum = test.cycle + 1;
+                output.number = item.number;
+                output.type = item.type;
+                output.cumlt = int(test_page.response.cumlt);
+                output.cumnlt = int(test_page.response.cumnlt);
+                output.lookedaway = test_page.response.lookedaway;
+                test_output_append(output);
+
+                // Add end of trial message.
+                eyetracker.print_to_data_file("trialend " +
+                    string(item.number) + " " +
+                    string(test.cycle + 1) + " " +
+                    string(item.number) + " " +
+                    string(item.type));
+
+                // Clear eye-tracker status line.
+                eyetracker.send_command("record_status_message ''");
+            }
+        }
+    }
+}
+
+void test_action(Part caller)
+{
+    // activate test phase with caller.
+    test_block.enter(caller);
+}

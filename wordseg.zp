@@ -64,7 +64,8 @@ import std_sound_output_device;
 import std_sound_playback;
 
 import test::eyetracker_eyelink_infant;
-import test::task;
+import test::fam_task;
+import test::test_task;
 
 Experiment experiment
 {
@@ -94,11 +95,19 @@ Experiment experiment
         }
     }
 
-    Part phase1 
+    Part familiarization
     {
         on_event:entry()
         {
-            test::action(this);
+            test::fam_action(this);
+        }
+    }
+    
+    Part test
+    {
+        on_event:entry()
+        {
+            test::test_action(this);
         }
     }
 
