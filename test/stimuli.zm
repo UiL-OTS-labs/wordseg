@@ -46,8 +46,8 @@ record TestItem
 //const string TEST_IMAGE         = "new.png";
 
 const string ATTENTION_IMAGE    = "doll.svg";
-const string ATTENTION_SOUND1   = "chime_up.wav";
-const string ATTENTION_SOUND2   = "chime_down.wav";
+const string ATTENTION_SOUND1   = "chime-up.wav";
+const string ATTENTION_SOUND2   = "chime-down.wav";
 
 /*Checker board images*/
 string[..] cboard_images = {
