@@ -106,7 +106,7 @@ EyeLinkEyeTracker eyetracker
     on_event:camera_setup_begin()
     {
         // Play a sound 5 times with 5s interval.
-        sound_playback.play(zep_dir() + "data/sounds/baby-giggle.wav", 
+        sound_playback.play(stimuli_dir() + "/sounds/baby-giggle.wav", 
             now() + 1000ms, 5000ms, 5);
     }
 
@@ -116,7 +116,7 @@ EyeLinkEyeTracker eyetracker
     on_event:camera_setup_cont()
     {
         // Play a sound 5 times with 5s interval.
-        sound_playback.play(zep_dir() + "data/sounds/baby-giggle.wav", 
+        sound_playback.play(stimuli_dir() + "/sounds/baby-giggle.wav", 
             now() + 1000ms, 5000ms, 5);
     }
 
@@ -129,7 +129,7 @@ EyeLinkEyeTracker eyetracker
 		eyetracker.focus_target_image = stimuli_dir() + "images/" + "calibrate_" + string(selected) + ".svg";
 		
         // Play a sound.
-        sound_playback.play(zep_dir() + "data/sounds/chime-down.wav", 
+        sound_playback.play(stimuli_dir() + "/sounds/chime-down.wav", 
             now() + 10ms);
     }
 
@@ -138,7 +138,7 @@ EyeLinkEyeTracker eyetracker
     on_event:final_begin()
     {
         // Play a sound.
-        sound_playback.play(zep_dir() + "data/sounds/chime-up.wav", 
+        sound_playback.play(stimuli_dir() + "/sounds/chime-up.wav", 
             now() + 10ms);
     }
 
@@ -148,7 +148,7 @@ EyeLinkEyeTracker eyetracker
     on_event:final_cont()
     {
         // Play a sound.
-        sound_playback.play(zep_dir() + "data/sounds/chime-up.wav", 
+        sound_playback.play(stimuli_dir() + "/sounds/chime-up.wav", 
             now() + 10ms);
     }
 
@@ -157,7 +157,7 @@ EyeLinkEyeTracker eyetracker
     on_event:wakeup_begin()
     {
         // Play a sound.
-        sound_playback.play(zep_dir() + "data/sounds/baby-laugh.wav", 
+        sound_playback.play(stimuli_dir() + "/sounds/baby-laugh.wav", 
             now() + 10ms);
     }
 
