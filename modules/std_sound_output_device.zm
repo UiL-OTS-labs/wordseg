@@ -1,0 +1,34 @@
+/******************************************************************************\
+FILE:           std_sound_output_device.zm
+AUTHOR:         Theo Veenker <theo.veenker@beexy.nl>
+ADAPTED BY:     -
+
+DESCRIPTION:
+
+Provides a sound output device object. The device will be opened at 
+initialization time.
+
+
+HISTORY:
+2009-12-02 TV   Created as part of the standard Zep modules.
+
+\******************************************************************************/
+
+plugin zep_sound;
+
+import sound_settings;
+
+
+SoundPlaybackDevice sound_output_device
+{
+    init()
+    {
+        num_channels = PLAYBACK_NUM_CHANNELS;
+        //samplerate = PLAYBACK_SAMPLE_RATE; <-- the default RATE_48000
+        samplerate = RATE_44100;
+        buffer_size = PLAYBACK_BUFFER_SIZE;
+//      device_num = 0;
+
+        if (open() != 0) terminate;
+    }
+}
