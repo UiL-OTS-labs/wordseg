@@ -59,8 +59,8 @@ void fam_output_save()
 {
     // Save output table as CSV file. The filename format is:
     //   <dbname>/<dbnum>/<expname>/ses<sesid>-<tblnum>.csv
-    fam_output.save(expdb.experiment.session.table_filename(1), 
-        "Familiarization phase results");
+    string fn = expdb.experiment.session.create_table("fam",1);
+    fam_output.save(fn, "Familiarization phase results");
     fam_output.size = 0;
 }
 
@@ -77,7 +77,7 @@ void test_output_save()
 {
     // Save output table as CSV file. The filename format is:
     //   <dbname>/<dbnum>/<expname>/ses<sesid>-<tblnum>.csv
-    test_output.save(expdb.experiment.session.table_filename(1), 
-        "Test phase results");
+    string fn = expdb.experiment.session.create_table("test", 2);
+    test_output.save(fn, "Test phase results");
     test_output.size = 0;
 }
