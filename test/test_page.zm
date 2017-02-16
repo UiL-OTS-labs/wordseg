@@ -20,6 +20,7 @@ HISTORY:
 
 \******************************************************************************/
 
+color ATTENTION_BACK_COLOR = rgb:BAD6EB; // background color of the attention
 
 Page test_page
 {
@@ -56,7 +57,7 @@ Page test_page
         {
             init()
             {
-                fill_pattern_color = rgb:BAD6EB;    // background color of stimuli
+                fill_pattern_color = ATTENTION_BACK_COLOR;
                 size = 900, 900;
                 offset_x = width / 2;
                 offset_y = height / 2;
@@ -113,6 +114,7 @@ Page test_page
                         stimuli_dir() + "sounds/" + ATTENTION_SOUND1,
                         stimuli_dir() + "sounds/" + ATTENTION_SOUND2,
                         event_time + 250ms, 250ms);
+                    canvas.fill_pattern_color = ATTENTION_BACK_COLOR;
                 }
 
                 on_event:finish()
@@ -130,13 +132,16 @@ Page test_page
                 {
                     // center the grid
                     image = fn;
-                    x = -actual_width/2;
-                    y = -actual_height/2;
+                    width = 800;
+                    height = 800;
+                    x = -width/2;
+                    y = -height/2;
                 }
 
                 on_event:start()
                 {
                     string fn = get_next_cboard();
+                    canvas.fill_pattern_color = TEST_PAGE_COLOR;
                     fn = stimuli_dir() + "images/" + fn;
                     stimulus2.abort();
                     stimulus2.load(fn);
@@ -157,8 +162,10 @@ Page test_page
                 {
                     // center the grid
                     image = fn;
-                    x = -actual_width/2;
-                    y = -actual_height/2;
+                    width = 800;
+                    height= 800;
+                    x = -width/2;
+                    y = -height/2;
                 }
                 
                 on_event:start()
