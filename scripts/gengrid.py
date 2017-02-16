@@ -4,7 +4,7 @@ import pprint
 import random
 import time
 
-#definitions of the colors
+# definitions of the colors
 RED     = (1.0, 0.0, 0.0)
 GREEN   = (0.0, 1.0, 0.0)
 BLUE    = (0.0, 0.0, 1.0)
@@ -12,10 +12,13 @@ RED     = (1.0, 0.0, 0.0)
 YELLOW  = (1.0, 1.0, 0.0)
 MAGENTA = (1.0, 0.0, 1.0)
 CYAN    = (0.0, 1.0, 1.0)
-
-#and "Colors"
 WHITE   = (1.0, 1.0, 1.0)
 BLACK   = (0.0, 0.0, 0.0)
+
+# image dimensions
+width = 800.0
+height= 800.0
+
 
 class Grid(object):
     ''' Defines a grid. '''
@@ -121,9 +124,6 @@ colortable = {
     Grid.CYAN    : CYAN
 }
 
-width = 800.0
-height= 800.0
-
 def create_grid_svg(name, grid, width, height):
     ''' Paints the grid on to a svg image '''
     surf = c.SVGSurface(name, width, height)
@@ -145,7 +145,7 @@ if __name__ == "__main__":
     random.seed(seed)
     ncolors = 2 
     assign = [int(i/ncolors)
-              for i in range(Grid.RED * ncolors, (Grid.CYAN+1) * ncolors)
+              for i in range(Grid.RED * ncolors, (Grid.CYAN + 1) * ncolors)
               ]
     numpics = 64
 
