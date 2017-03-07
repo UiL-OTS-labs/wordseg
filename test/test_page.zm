@@ -90,16 +90,12 @@ Page test_page
                 void load(string fn, int w=0)
                 {
                     image = fn;
-                    if (w > 0) {
-                        width = w;
-                        height = -1;
-                    }
-                    else {
-                        width = 0;
-                        height = 0;
-                    }
-                    x = -actual_width / 2;
-                    y = -actual_height / 2;
+
+                    width = 500;
+                    height= 500;
+
+                    x = -width / 2;
+                    y = -height / 2;
                 }
 
                 on_event:pre_update()

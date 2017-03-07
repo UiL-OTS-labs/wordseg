@@ -43,7 +43,7 @@ record TestItem
     string      sndfn;          // sound stimulus filename-stub
 }
 
-const string ATTENTION_IMAGE    = "doll.svg";
+const string ATTENTION_IMAGE    = "spiral01.png";
 const string ATTENTION_SOUND1   = "chime-up.wav";
 const string ATTENTION_SOUND2   = "chime-down.wav";
 
