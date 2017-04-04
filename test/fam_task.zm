@@ -122,7 +122,9 @@ Block fam_block
                         + "'"
                         );
 
-                bool present_attention = (familiarization.cycle == 0);
+                // Set whether or not to present the attention grabber.
+                //bool present_attention = (familiarization.cycle == 0);
+                bool present_attention = true;
 
                 // Start trial.
                 test_page.action(
