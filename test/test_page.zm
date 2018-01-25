@@ -140,6 +140,7 @@ Page test_page
                 //void load(string fn, int pos, bool fullsize = false)
                 on_event:init()
                 {
+                    // center the grid
                     width  = 800;
                     height = 800;
                     x      = -width/2;
@@ -148,13 +149,16 @@ Page test_page
 
                 void load(string fn)
                 {
-                    // center the grid
                     image = fn;
                 }
 
                 on_event:pre_update()
                 {
-                    println("relative_frame = " + relative_frame);
+                    if (relative_frame % 60 == 0) {
+                        string fn = stimuli_dir() + "images/";
+                        fn += get_next_cboard();
+                        load(fn);
+                    }
                 }
 
                 on_event:start()
