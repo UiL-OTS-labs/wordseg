@@ -137,6 +137,9 @@ Page test_page
 
             ImageShape grid
             {
+                real refresh_rate;
+                int  rounded_fps;
+
                 //void load(string fn, int pos, bool fullsize = false)
                 on_event:init()
                 {
@@ -145,6 +148,9 @@ Page test_page
                     height = 800;
                     x      = -width/2;
                     y      = -height/2;
+
+                    refresh_rate = display_device.refresh_rate;
+                    rounded_fps = int(round(refresh_rate));
                 }
 
                 void load(string fn)
@@ -154,7 +160,7 @@ Page test_page
 
                 on_event:pre_update()
                 {
-                    if (relative_frame % 60 == 0) {
+                    if (relative_frame % rounded_fps == 0) {
                         string fn = stimuli_dir() + "images/";
                         fn += get_next_cboard();
                         load(fn);
