@@ -123,28 +123,27 @@ Page test_page
                 }
             }
 
-            Timer update_grid
-            {
-                on_event:expire()
-                {
-                    string fn = get_next_cboard();
-                    string new_fn = stimuli_dir() + "images/" + fn;
-                    grid.image = new_fn;
-
-                    start(event_time + 1s);
-                }
-            }
-
+//            Timer update_grid
+//            {
+//                on_event:expire()
+//                {
+//                    string fn = get_next_cboard();
+//                    string new_fn = stimuli_dir() + "images/" + fn;
+//                    grid.image = new_fn;
+//
+//                    start(event_time + 1s);
+//                }
+//            }
 
             ImageShape grid
             {
                 //void load(string fn, int pos, bool fullsize = false)
                 on_event:init()
                 {
-                    width = 800;
+                    width  = 800;
                     height = 800;
-                    x = -width/2;
-                    y = -height/2;
+                    x      = -width/2;
+                    y      = -height/2;
                 }
 
                 void load(string fn)
@@ -466,8 +465,8 @@ Page test_page
         }
         else {
             layout.start_stimulus_test(attenoffset + ATTEN_STIM_DELAY);
-            layout.canvas.stimulus1.load(fn);
-            layout.canvas.stimulus1.start(attenoffset + ATTEN_STIM_DELAY);
+            layout.canvas.grid.load(fn);
+            layout.canvas.grid.start(attenoffset + ATTEN_STIM_DELAY);
         }
         
         // Remember who to signal when the trial is over.
