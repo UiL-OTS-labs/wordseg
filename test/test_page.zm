@@ -119,19 +119,48 @@ Page test_page
                 }
             }
 
-            ImageShape stimulus1
+//            Timer update_grid
+//            {
+//                on_event:expire()
+//                {
+//                    string fn = get_next_cboard();
+//                    string new_fn = stimuli_dir() + "images/" + fn;
+//                    grid.image = new_fn;
+//
+//                    start(event_time + 1s);
+//                }
+//            }
+
+            ImageShape grid
             {
-                bool is_playing = false;
-                
+                real refresh_rate;
+                int  rounded_fps;
+
                 //void load(string fn, int pos, bool fullsize = false)
-                void load(string fn)
+                on_event:init()
                 {
                     // center the grid
-                    image = fn;
-                    width = 800;
+                    width  = 800;
                     height = 800;
-                    x = -width/2;
-                    y = -height/2;
+                    x      = -width/2;
+                    y      = -height/2;
+
+                    refresh_rate = display_device.refresh_rate;
+                    rounded_fps = int(round(refresh_rate));
+                }
+
+                void load(string fn)
+                {
+                    image = fn;
+                }
+
+                on_event:pre_update()
+                {
+                    if (relative_frame % rounded_fps == 0) {
+                        string fn = stimuli_dir() + "images/";
+                        fn += get_next_cboard();
+                        load(fn);
+                    }
                 }
 
                 on_event:start()
@@ -139,47 +168,6 @@ Page test_page
                     string fn = get_next_cboard();
                     canvas.fill_pattern_color = TEST_PAGE_COLOR;
                     fn = stimuli_dir() + "images/" + fn;
-                    stimulus2.abort();
-                    stimulus2.load(fn);
-                    stimulus2.start(
-                            stimulus1.start_time + INTER_CBOARD_DUR,
-                            INTER_CBOARD_DUR
-                            );
-                    is_playing = true;
-                }
-            }
-
-            ImageShape stimulus2
-            {
-                bool is_playing = false;
-
-                //void load(string fn, int pos, bool fullsize = false)
-                void load(string fn)
-                {
-                    // center the grid
-                    image = fn;
-                    width = 800;
-                    height= 800;
-                    x = -width/2;
-                    y = -height/2;
-                }
-                
-                on_event:start()
-                {
-                    string fn = get_next_cboard();
-                    fn = stimuli_dir() + "images/" + fn;
-                    stimulus1.abort();
-                    stimulus1.load(fn);
-                    stimulus1.start(
-                            stimulus2.start_time + INTER_CBOARD_DUR,
-                            INTER_CBOARD_DUR
-                            );
-                    is_playing = true;
-                }
-
-                on_event:finish()
-                {
-                    is_playing = false;
                 }
             }
         }
@@ -199,7 +187,7 @@ Page test_page
         time start_stimulus_familiarization(time t)
         {
             // Prepare stimulus presentation objects.
-            canvas.stimulus1.load(
+            canvas.grid.load(
                     stimuli_dir() +
                     "images/" +
                     get_next_cboard()
@@ -215,7 +203,7 @@ Page test_page
         time start_stimulus_test(time t)
         {
             // Prepare stimulus presentation objects.
-            canvas.stimulus1.load(
+            canvas.grid.load(
                     stimuli_dir() +
                     "images/" +
                     get_next_cboard()
@@ -232,15 +220,7 @@ Page test_page
         {
             full_abort();
 
-            canvas.stimulus1.is_visible = false;
-            canvas.stimulus2.is_visible = false;
-            canvas.stimulus1.is_playing = false;
-            canvas.stimulus1.is_playing = false;
-        }
-
-        bool is_animating()
-        {
-            return canvas.stimulus1.is_playing || canvas.stimulus2.is_playing;
+            canvas.grid.is_visible = false;
         }
     }
 
@@ -486,13 +466,13 @@ Page test_page
         string fn = stimuli_dir() + "images/" + get_next_cboard();
         if (phase == FAM_PHASE) {
             layout.canvas.start(attenoffset + ATTEN_STIM_DELAY);
-            layout.canvas.stimulus1.load(fn);
-            layout.canvas.stimulus1.start(attenoffset + ATTEN_STIM_DELAY);
+            layout.canvas.grid.load(fn);
+            layout.canvas.grid.start(attenoffset + ATTEN_STIM_DELAY);
         }
         else {
             layout.start_stimulus_test(attenoffset + ATTEN_STIM_DELAY);
-            layout.canvas.stimulus1.load(fn);
-            layout.canvas.stimulus1.start(attenoffset + ATTEN_STIM_DELAY);
+            layout.canvas.grid.load(fn);
+            layout.canvas.grid.start(attenoffset + ATTEN_STIM_DELAY);
         }
         
         // Remember who to signal when the trial is over.
