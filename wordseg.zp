@@ -52,7 +52,7 @@ HISTORY:
                 today.
 \******************************************************************************/
 
-requires 1.14;
+requires 1.16;
 
 import std_windows1;
 import std_texts_en;

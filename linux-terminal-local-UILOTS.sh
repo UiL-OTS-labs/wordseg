@@ -20,7 +20,7 @@
 #-------------------------------------------------------------------------------
 
 # Define required Zep version:
-ZEP_VER=1.14
+ZEP_VER=1.16
 
 # If installed at nonstandard location, define installation location here:
 #ZEP_DIR=/opt/zep
